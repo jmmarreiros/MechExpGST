@@ -1,0 +1,198 @@
+sample,parameter,motion,material,id,elev_min,elev_max,nparts,npoints,perimeter,area
+id2-5,tri,Impact,Flint,0,0,0.01,1007,67487,485.227,204.494
+id2-5,tri,Impact,Flint,1,0.01,0.02,1010,59648,446.012,17.478
+id3-3,tri,Impact,Flint,0,0,0.01,131,14961,160.637,83.65
+id3-3,tri,Impact,Flint,1,0.01,0.02,165,16143,177.519,38.124
+id3-3,tri,Impact,Flint,2,0.02,0.03,47,3142,32.795,1.831
+id3-3,tri,Impact,Flint,3,0.03,0.04,10,423,4.384,0.14
+id3-3,tri,Impact,Flint,4,0.04,0.05,1,7,0.039,0
+id3-8,tri,Impact,Bone,0,0,0.01,11,6559,56.444,135.87
+id3-8,tri,Impact,Bone,1,0.01,0.02,12,1248,13.965,1.068
+id3-9,tri,Impact,Bone,0,0,0.01,6,8538,59.1,158.348
+id3-9,tri,Impact,Bone,1,0.01,0.02,6,1424,12.844,2.028
+id6-1,tri,Grinding,Dry acorn,0,0,0.01,1,7665,57.48,204.156
+id6-3,tri,Grinding,Moist acorn,0,0,0.01,33,9453,83.805,144.386
+id6-3,tri,Grinding,Moist acorn,1,0.01,0.02,32,4400,45.912,5.464
+id6-6,tri,Grinding,Dry acorn,0,0,0.01,7,5793,54.604,144.268
+id6-6,tri,Grinding,Dry acorn,1,0.01,0.02,12,764,9.261,0.551
+id6-7,tri,Grinding,Moist acorn,0,0,0.01,9,6011,58.469,101.599
+id6-7,tri,Grinding,Moist acorn,1,0.01,0.02,20,2276,26.622,1.7
+id2-5,slope,Impact,Flint,0,0,10,1174,68634,534.76,28.552
+id2-5,slope,Impact,Flint,1,10,20,2029,120708,941.049,38.804
+id2-5,slope,Impact,Flint,2,20,30,1845,104757,824.133,33.886
+id2-5,slope,Impact,Flint,3,30,40,2217,123507,965.269,44.039
+id2-5,slope,Impact,Flint,4,40,50,2340,137720,1056.052,45.689
+id2-5,slope,Impact,Flint,5,50,60,1412,80458,600.704,29.637
+id2-5,slope,Impact,Flint,6,60,70,349,10928,78.62,1.366
+id3-3,slope,Impact,Flint,0,0,10,54,2835,31.196,1.703
+id3-3,slope,Impact,Flint,1,10,20,180,14495,164.616,20.727
+id3-3,slope,Impact,Flint,2,20,30,279,23651,274.062,28.866
+id3-3,slope,Impact,Flint,3,30,40,265,23932,278.78,30.843
+id3-3,slope,Impact,Flint,4,40,50,237,21764,250.885,26.089
+id3-3,slope,Impact,Flint,5,50,60,143,13026,143.841,13.683
+id3-3,slope,Impact,Flint,6,60,70,37,2659,27.544,1.781
+id3-3,slope,Impact,Flint,7,70,80,5,216,2.253,0.055
+id3-8,slope,Impact,Bone,0,0,10,24,991,11.939,0.39
+id3-8,slope,Impact,Bone,1,10,20,113,10327,122.548,30.349
+id3-8,slope,Impact,Bone,2,20,30,149,18261,220.901,83.366
+id3-8,slope,Impact,Bone,3,30,40,72,11230,133.351,21.417
+id3-8,slope,Impact,Bone,4,40,50,9,1542,16.992,1.416
+id3-9,slope,Impact,Bone,0,0,10,99,12489,121.867,45.285
+id3-9,slope,Impact,Bone,1,10,20,186,23774,235.798,38.594
+id3-9,slope,Impact,Bone,2,20,30,170,22996,224.883,46.321
+id3-9,slope,Impact,Bone,3,30,40,94,14878,142.247,25.773
+id3-9,slope,Impact,Bone,4,40,50,19,4166,40.676,3.403
+id3-9,slope,Impact,Bone,5,50,60,3,906,8.83,0.999
+id6-1,slope,Grinding,Dry acorn,0,0,10,88,11590,103.981,202.036
+id6-1,slope,Grinding,Dry acorn,1,10,20,92,4132,48.022,2.12
+id6-3,slope,Grinding,Moist acorn,0,0,10,111,9956,109.271,27.023
+id6-3,slope,Grinding,Moist acorn,1,10,20,241,23283,257.085,41.747
+id6-3,slope,Grinding,Moist acorn,2,20,30,176,21234,231.631,53.305
+id6-3,slope,Grinding,Moist acorn,3,30,40,82,11736,126.76,20.831
+id6-3,slope,Grinding,Moist acorn,4,40,50,34,4993,52.009,6.871
+id6-3,slope,Grinding,Moist acorn,5,50,60,4,222,1.934,0.072
+id6-6,slope,Grinding,Dry acorn,0,0,10,162,12240,169.98,28.167
+id6-6,slope,Grinding,Dry acorn,1,10,20,332,23835,322.37,78.677
+id6-6,slope,Grinding,Dry acorn,2,20,30,216,14871,196.864,32.611
+id6-6,slope,Grinding,Dry acorn,3,30,40,45,4395,54.546,5.365
+id6-7,slope,Grinding,Moist acorn,0,0,10,60,6445,85.809,21.356
+id6-7,slope,Grinding,Moist acorn,1,10,20,110,12643,162.424,37.105
+id6-7,slope,Grinding,Moist acorn,2,20,30,121,11694,145.104,28.102
+id6-7,slope,Grinding,Moist acorn,3,30,40,63,6892,81.671,16.565
+id6-7,slope,Grinding,Moist acorn,4,40,50,8,338,4.018,0.172
+id2-5,tri,Impact,Flint,0,0,0.001,1150,63224,488.891,16.674
+id2-5,tri,Impact,Flint,1,0.001,0.002,2266,123369,953.262,31.28
+id2-5,tri,Impact,Flint,2,0.002,0.003,2053,111284,865.416,23.779
+id2-5,tri,Impact,Flint,3,0.003,0.004,1926,101533,794.727,20.999
+id2-5,tri,Impact,Flint,4,0.004,0.005,2198,114553,895.281,21.044
+id2-5,tri,Impact,Flint,5,0.005,0.006,2485,136483,1063.641,22.578
+id2-5,tri,Impact,Flint,6,0.006,0.007,2674,145694,1128.092,21.313
+id2-5,tri,Impact,Flint,7,0.007,0.008,2712,144747,1109.34,18.28
+id2-5,tri,Impact,Flint,8,0.008,0.009,2453,139815,1065.36,15.713
+id2-5,tri,Impact,Flint,9,0.009,0.01,2108,126779,961.742,12.836
+id2-5,tri,Impact,Flint,10,0.01,0.011,1791,98191,738.691,8.797
+id2-5,tri,Impact,Flint,11,0.011,0.012,1311,63272,472.159,4.983
+id2-5,tri,Impact,Flint,12,0.012,0.013,869,34310,253.336,2.316
+id2-5,tri,Impact,Flint,13,0.013,0.014,504,15955,116.416,0.892
+id2-5,tri,Impact,Flint,14,0.014,0.015,259,6653,48.029,0.317
+id2-5,tri,Impact,Flint,15,0.015,0.016,142,2799,19.718,0.116
+id2-5,tri,Impact,Flint,16,0.016,0.017,60,1047,7.383,0.039
+id2-5,tri,Impact,Flint,17,0.017,0.018,21,360,2.558,0.012
+id2-5,tri,Impact,Flint,18,0.018,0.019,7,123,0.907,0.004
+id2-5,tri,Impact,Flint,19,0.019,0.02,3,35,0.234,0.001
+id3-3,tri,Impact,Flint,0,0,0.001,5,479,4.91,0.283
+id3-3,tri,Impact,Flint,1,0.001,0.002,56,2968,33.422,1.406
+id3-3,tri,Impact,Flint,2,0.002,0.003,149,9811,112.38,5.891
+id3-3,tri,Impact,Flint,3,0.003,0.004,221,18272,212.598,12.532
+id3-3,tri,Impact,Flint,4,0.004,0.005,259,21822,254.199,12.947
+id3-3,tri,Impact,Flint,5,0.005,0.006,238,21355,249.952,10.738
+id3-3,tri,Impact,Flint,6,0.006,0.007,277,23638,275.913,11.137
+id3-3,tri,Impact,Flint,7,0.007,0.008,287,24797,289.363,10.718
+id3-3,tri,Impact,Flint,8,0.008,0.009,248,23780,279.329,9.526
+id3-3,tri,Impact,Flint,9,0.009,0.01,247,23361,274.111,8.472
+id3-3,tri,Impact,Flint,10,0.01,0.011,247,22763,265.637,7.08
+id3-3,tri,Impact,Flint,11,0.011,0.012,237,22296,258.269,6.899
+id3-3,tri,Impact,Flint,12,0.012,0.013,238,21665,250.134,5.738
+id3-3,tri,Impact,Flint,13,0.013,0.014,228,20082,231.7,5.102
+id3-3,tri,Impact,Flint,14,0.014,0.015,197,17817,204.761,4.109
+id3-3,tri,Impact,Flint,15,0.015,0.016,176,15465,177.027,3.122
+id3-3,tri,Impact,Flint,16,0.016,0.017,151,13038,148.958,2.292
+id3-3,tri,Impact,Flint,17,0.017,0.018,108,10658,122.066,1.737
+id3-3,tri,Impact,Flint,18,0.018,0.019,90,8314,94.245,1.259
+id3-3,tri,Impact,Flint,19,0.019,0.02,84,5764,64.205,0.785
+id3-3,tri,Impact,Flint,20,0.02,0.021,61,3695,40.756,0.434
+id3-3,tri,Impact,Flint,21,0.021,0.022,35,2591,28.636,0.242
+id3-3,tri,Impact,Flint,22,0.022,0.023,24,2263,24.863,0.212
+id3-3,tri,Impact,Flint,23,0.023,0.024,32,2215,24.205,0.213
+id3-3,tri,Impact,Flint,24,0.024,0.025,35,2068,22.561,0.201
+id3-3,tri,Impact,Flint,25,0.025,0.026,26,1708,18.597,0.148
+id3-3,tri,Impact,Flint,26,0.026,0.027,18,1446,15.639,0.123
+id3-3,tri,Impact,Flint,27,0.027,0.028,20,1276,13.648,0.106
+id3-3,tri,Impact,Flint,28,0.028,0.029,21,1105,11.771,0.089
+id3-3,tri,Impact,Flint,29,0.029,0.03,17,869,9.324,0.064
+id3-3,tri,Impact,Flint,30,0.03,0.031,12,645,6.957,0.048
+id3-3,tri,Impact,Flint,31,0.031,0.032,9,459,4.964,0.03
+id3-3,tri,Impact,Flint,32,0.032,0.033,7,325,3.524,0.026
+id3-3,tri,Impact,Flint,33,0.033,0.034,5,247,2.594,0.014
+id3-3,tri,Impact,Flint,34,0.034,0.035,4,171,1.749,0.01
+id3-3,tri,Impact,Flint,35,0.035,0.036,4,113,1.153,0.003
+id3-3,tri,Impact,Flint,36,0.036,0.037,3,88,0.9,0.003
+id3-3,tri,Impact,Flint,37,0.037,0.038,3,68,0.676,0.003
+id3-3,tri,Impact,Flint,38,0.038,0.039,3,43,0.413,0.002
+id3-3,tri,Impact,Flint,39,0.039,0.04,2,22,0.189,0.001
+id3-3,tri,Impact,Flint,40,0.04,0.041,1,7,0.039,0
+id3-8,tri,Impact,Bone,0,0,0.002,14,488,5.72,0.203
+id3-8,tri,Impact,Bone,1,0.002,0.003,84,6622,79.741,6.343
+id3-8,tri,Impact,Bone,2,0.003,0.004,162,13111,161.963,15.639
+id3-8,tri,Impact,Bone,3,0.004,0.005,215,18880,235.928,23.641
+id3-8,tri,Impact,Bone,4,0.005,0.006,266,27169,338.812,39.005
+id3-8,tri,Impact,Bone,5,0.006,0.007,238,25813,321.494,29.121
+id3-8,tri,Impact,Bone,6,0.007,0.008,158,15561,190.373,14.303
+id3-8,tri,Impact,Bone,7,0.008,0.009,88,7300,86.875,5.439
+id3-8,tri,Impact,Bone,8,0.009,0.01,37,3254,38.814,2.176
+id3-8,tri,Impact,Bone,9,0.01,0.011,14,1480,17.555,0.8
+id3-8,tri,Impact,Bone,10,0.011,0.012,7,641,7.485,0.178
+id3-8,tri,Impact,Bone,11,0.012,0.013,5,225,2.805,0.068
+id3-8,tri,Impact,Bone,12,0.013,0.014,2,72,0.943,0.022
+id3-9,tri,Impact,Bone,0,0,0.001,168,14619,145.066,23.041
+id3-9,tri,Impact,Bone,1,0.001,0.002,270,25521,253.877,28.352
+id3-9,tri,Impact,Bone,2,0.002,0.003,196,20570,204.875,20.3
+id3-9,tri,Impact,Bone,3,0.003,0.004,202,23154,229.777,21.656
+id3-9,tri,Impact,Bone,4,0.004,0.005,172,23560,235.105,23.984
+id3-9,tri,Impact,Bone,5,0.005,0.006,133,20011,200.837,17.31
+id3-9,tri,Impact,Bone,6,0.006,0.007,107,16817,166.797,13.317
+id3-9,tri,Impact,Bone,7,0.007,0.008,75,10381,103.438,6.629
+id3-9,tri,Impact,Bone,8,0.008,0.009,37,5373,54.101,2.824
+id3-9,tri,Impact,Bone,9,0.009,0.01,15,2595,26.231,0.932
+id3-9,tri,Impact,Bone,10,0.01,0.011,8,2047,20.108,0.566
+id3-9,tri,Impact,Bone,11,0.011,0.012,4,1654,16.981,0.53
+id3-9,tri,Impact,Bone,12,0.012,0.013,5,1487,15.035,0.411
+id3-9,tri,Impact,Bone,13,0.013,0.014,7,1162,11.749,0.258
+id3-9,tri,Impact,Bone,14,0.014,0.015,6,682,6.953,0.173
+id3-9,tri,Impact,Bone,15,0.015,0.016,5,335,3.353,0.058
+id3-9,tri,Impact,Bone,16,0.016,0.017,4,160,1.615,0.028
+id3-9,tri,Impact,Bone,17,0.017,0.018,1,23,0.224,0.003
+id6-1,tri,Grinding,Dry acorn,0,0,0.001,975,68784,792.312,128.043
+id6-1,tri,Grinding,Dry acorn,1,0.001,0.002,1062,72935,843.289,73.541
+id6-1,tri,Grinding,Dry acorn,2,0.002,0.003,114,5192,59.099,2.512
+id6-1,tri,Grinding,Dry acorn,3,0.003,0.004,2,134,1.527,0.06
+id6-3,tri,Grinding,Moist acorn,0,0,0.001,103,8216,91.642,7.789
+id6-3,tri,Grinding,Moist acorn,1,0.001,0.002,207,17473,196.689,18.718
+id6-3,tri,Grinding,Moist acorn,2,0.002,0.003,212,18556,206.812,18.968
+id6-3,tri,Grinding,Moist acorn,3,0.003,0.004,256,20645,230.896,18.559
+id6-3,tri,Grinding,Moist acorn,4,0.004,0.005,263,25262,282.301,27.301
+id6-3,tri,Grinding,Moist acorn,5,0.005,0.006,202,22249,245.98,20.985
+id6-3,tri,Grinding,Moist acorn,6,0.006,0.007,126,14529,158.934,13.832
+id6-3,tri,Grinding,Moist acorn,7,0.007,0.008,79,9117,99.667,7.171
+id6-3,tri,Grinding,Moist acorn,8,0.008,0.009,75,7732,83.923,5.557
+id6-3,tri,Grinding,Moist acorn,9,0.009,0.01,75,8161,88.409,5.506
+id6-3,tri,Grinding,Moist acorn,10,0.01,0.011,41,5925,64.448,3.448
+id6-3,tri,Grinding,Moist acorn,11,0.011,0.012,23,2972,31.85,1.473
+id6-3,tri,Grinding,Moist acorn,12,0.012,0.013,17,1127,11.698,0.37
+id6-3,tri,Grinding,Moist acorn,13,0.013,0.014,7,452,4.526,0.123
+id6-3,tri,Grinding,Moist acorn,14,0.014,0.015,5,224,2.122,0.041
+id6-3,tri,Grinding,Moist acorn,15,0.015,0.016,1,50,0.456,0.007
+id6-6,tri,Grinding,Dry acorn,0,0,0.001,53,4102,57.089,5.638
+id6-6,tri,Grinding,Dry acorn,1,0.001,0.002,197,12093,169.829,13.035
+id6-6,tri,Grinding,Dry acorn,2,0.002,0.003,375,23297,326.157,26.515
+id6-6,tri,Grinding,Dry acorn,3,0.003,0.004,453,31703,439.609,34.55
+id6-6,tri,Grinding,Dry acorn,4,0.004,0.005,399,26779,370.028,26.607
+id6-6,tri,Grinding,Dry acorn,5,0.005,0.006,264,17910,245.568,16.172
+id6-6,tri,Grinding,Dry acorn,6,0.006,0.007,151,11579,159.339,9.967
+id6-6,tri,Grinding,Dry acorn,7,0.007,0.008,93,8011,109.71,5.95
+id6-6,tri,Grinding,Dry acorn,8,0.008,0.009,72,5865,77.666,4.3
+id6-6,tri,Grinding,Dry acorn,9,0.009,0.01,40,2700,35.238,1.534
+id6-6,tri,Grinding,Dry acorn,10,0.01,0.011,13,914,11.417,0.41
+id6-6,tri,Grinding,Dry acorn,11,0.011,0.012,3,212,2.695,0.141
+id6-7,tri,Grinding,Moist acorn,0,0,0.001,51,3189,41.736,3.387
+id6-7,tri,Grinding,Moist acorn,1,0.001,0.002,103,9772,128.94,12.895
+id6-7,tri,Grinding,Moist acorn,2,0.002,0.003,121,13564,179.685,17.699
+id6-7,tri,Grinding,Moist acorn,3,0.003,0.004,132,12956,171.545,14.004
+id6-7,tri,Grinding,Moist acorn,4,0.004,0.005,111,11775,152.165,12.684
+id6-7,tri,Grinding,Moist acorn,5,0.005,0.006,103,9875,127.225,9.185
+id6-7,tri,Grinding,Moist acorn,6,0.006,0.007,115,9923,127.344,9.529
+id6-7,tri,Grinding,Moist acorn,7,0.007,0.008,105,9609,124.467,10.081
+id6-7,tri,Grinding,Moist acorn,8,0.008,0.009,76,7406,96.588,8.009
+id6-7,tri,Grinding,Moist acorn,9,0.009,0.01,47,5413,67.683,4.126
+id6-7,tri,Grinding,Moist acorn,10,0.01,0.011,22,2475,29.584,1.446
+id6-7,tri,Grinding,Moist acorn,11,0.011,0.012,7,438,4.934,0.254

@@ -1,0 +1,368 @@
+---
+title: "SOM - Read and plot data from the manuscript Paixao et al."
+author: 'Paixao et al. Using Mechanical experiments to study Ground Stone Tools use:
+  exploring the formation of percussive and grinding wear traces on Limestone tools '
+date: "28/09/2020"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(root.dir = "../", comment = NA, message = FALSE, indent = "", error = TRUE)
+
+```
+
+__Brief description of the script__
+
+This R markdown socument reads, summarizes and plots data for the manuscript Paixao et al.
+The document contais:
+
+1. Manuscript tables
+2. Manuscript figures (data plots)
+3. Supplementary material, including extra tables and figures (data plots)
+
+This R project and respective script follows the proceadures described by Marwick et al. 2017. To compile this markdown document do not delete or move files from their original folders.
+Please note that the tables and figures in this file do not match the numbering in the original manuscript.
+
+For any questions, comments and inputs, please contact:
+
+Joao Marreiros, marreiros@rgzm.de, or Eduardo Paixao, paixao@rgzm.de
+
+# Load data into R project
+
+*Imported files are in: '("../analysis/raw_data")'*
+*Figures are saved in: '"../analysis/plots")`'*
+*Tables are saved in: '`r paste0("../analysis/derived_data")`'*
+
+1) Load libraries and datasets
+
+```{r}
+
+# Load required libraries
+
+library(tidyverse)
+library(utils)
+library(knitr)
+library(janitor)
+library(kableExtra)
+library(GGally)
+library(doBy)
+library(ggpubr)
+
+# Load datasets
+
+gisdata <- read.csv("../analysis/raw_data/gisdata.csv")
+confocaldata <- read_csv("../analysis/raw_data/confocaldata.csv")
+
+```
+
+In this study, two datasets are used:
+
+1) __gisdata.csv__: dataset for the QGIS analysis
+```{r}
+
+str(gisdata)
+
+```
+
+2) __confocaldata.csv__: dataset for the Confocal microscopy surface texture analysis
+```{r}
+
+str(confocaldata)
+
+```
+
+\newpage
+
+# GIS analysis, Terrain analysis for Slope and TRI
+## Slope
+
+```{r fig.height = 6.5, fig.width = 8.5, res = 300}
+
+# Compute proportions for perimeter and area groupped by sample and parameter
+
+slope <- filter(gisdata, parameter == "slope")
+
+
+id2.5 <- filter(slope, sample == "id2-5")
+id3.3 <- filter(slope, sample == "id3-3")
+id3.8 <- filter(slope, sample == "id3-8")
+id3.9 <- filter(slope, sample == "id3-9")
+id6.1 <- filter(slope, sample == "id6-1")
+id6.3 <- filter(slope, sample == "id6-3")
+id6.6 <- filter(slope, sample == "id6-6")
+id6.7 <- filter(slope, sample == "id6-7")
+
+id2.5 <- id2.5 %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id3.3 <- id3.3 %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id3.8 <- id3.8 %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id3.9 <- id3.9 %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id6.1 <- id6.1 %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id6.3 <- id6.3 %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id6.6 <- id6.6 %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id6.7 <- id6.7 %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+newslope <- do.call("rbind", list(id2.5, id3.3, id3.8, id3.9, id6.1, id6.3, id6.6, id6.7))
+
+
+# save output
+
+write_csv(newslope,"../analysis/derived_data/newslope.csv")
+
+# Plot data
+
+
+areaP <- ggplot(newslope, aes(x = elev_max, y = areaperc, colour = motion)) +
+  geom_line() +
+  facet_wrap(~sample, scale = "free") +
+  ylab("Percentage of area") +
+  xlab("Slope in º")
+
+areaP
+ggsave("../analysis/plots/slopearea.png")
+
+
+perimP <- ggplot(newslope, aes(x = elev_max, y = perimperc, colour = motion)) +
+  geom_line() +
+  facet_wrap(~sample, scale = "free") +
+  ylab("Percentage of area") +
+  xlab("Slope in º")
+
+perimP
+ggsave("../analysis/plots/slopeperim.png")
+
+
+
+
+```
+
+## TRI (Terrain roughness index)
+
+```{r fig.height = 6.5, fig.width = 8.5, res = 300}
+
+tri <- filter(gisdata, parameter == "tri")
+
+id2.5 <- filter(tri, sample == "id2-5")
+id3.3 <- filter(tri, sample == "id3-3")
+id3.8 <- filter(tri, sample == "id3-8")
+id3.9 <- filter(tri, sample == "id3-9")
+id6.1 <- filter(tri, sample == "id6-1")
+id6.3 <- filter(tri, sample == "id6-3")
+id6.6 <- filter(tri, sample == "id6-6")
+id6.7 <- filter(tri, sample == "id6-7")
+
+id2.5 <- id2.5 %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id3.3 <- id3.3 %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id3.8 <- id3.8 %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id3.9 <- id3.9 %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id6.1 <- id6.1 %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id6.3 <- id6.3 %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id6.6 <- id6.6 %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id6.7 <- id6.7 %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+newtri <- do.call("rbind", list(id2.5, id3.3, id3.8, id3.9, id6.1, id6.3, id6.6, id6.7))
+
+# save output
+
+write_csv(newtri,"../analysis/derived_data/newtri.csv")
+
+# Plot data
+
+
+areaP <- ggplot(newtri, aes(x = elev_max, y = areaperc, colour = motion)) +
+  geom_line() +
+  facet_wrap(~sample, scale = "free") +
+  ylab("Percentage of area") +
+  xlab("TRI")
+
+areaP
+ggsave("../analysis/plots/triarea.png")
+
+
+perimP <- ggplot(newtri, aes(x = elev_max, y = perimperc, colour = motion)) +
+  geom_line() +
+  facet_wrap(~sample, scale = "free") +
+  ylab("Percentage of area") +
+  xlab("TRI")
+
+perimP
+ggsave("../analysis/plots/perimtri.png")
+
+
+
+```
+
+
+# Import, summarize and plot all Confocal data
+
+```{r fig.height = 6.5, fig.width = 8.5, res = 300}
+
+# Compute descriptive statistics
+
+# Scatterplot matrix for the ISO 25178 Height parameters
+
+data(confocaldata, package = "reshape")
+
+ggpairs(data=confocaldata,
+        columns = c(21:26),
+        cardinality_threshold = 30,
+        mapping = ggplot2::aes(color = workedmaterial, shape = motion),
+        lower = list(continuous = wrap("points", alpha = 1, size = 2)),
+        upper = list(continuous = "blank"),
+        legend = c(2,1)
+        ) +
+
+    theme(legend.position = "right") +
+  labs(fill = "Micro polish type")
+
+ggsave("../analysis/plots/confocal.png")
+
+# compute descriptive statistics
+
+nminmaxmeanmedsd <- function(x){
+	y <- x[!is.na(x)]
+	n_test <- length(y)
+	min_test <- min(y)
+	max_test <- max(y)
+	mean_test <- mean(y)
+ 	med_test <- median(y)
+ 	sd_test <- sd(y)
+ 	out <- c(n_test, min_test, max_test, mean_test, med_test, sd_test)
+ 	names(out) <- c("n", "min", "max", "mean", "median", "sd")
+ 	return(out)
+}
+
+positions <- c(1:5,21:27)
+df <- confocaldata %>% 
+  select(positions)
+
+num.var <- 5:length(df)
+
+confostats <- summaryBy(.~sample+workedmaterial, data=df[c("sample", "motion","workedmaterial", names(df)[num.var])], FUN=nminmaxmeanmedsd)
+
+write_csv(confostats, "../analysis/derived_data/confostats.csv")
+
+# Plot confostats for the ISO 25178 Height parameters
+# select parameter from datase
+
+heightconfostats <- select(confostats,sample,workedmaterial, Sq.mean,Ssk.mean,Sku.mean,Sp.mean,Sv.mean,Sz.mean,Sa.mean)
+
+p1 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Sq.mean, colour=workedmaterial)) + 
+  geom_boxplot() +
+  labs(x="", colour="Micro polish")
+
+p2 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Ssk.mean, colour=workedmaterial)) +   geom_boxplot() +
+  labs(x="", colour="Micro polish")
+
+p3 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Sku.mean, colour=workedmaterial)) +   geom_boxplot() +
+  labs(x="", colour="Micro polish")
+
+p4 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Sp.mean, colour=workedmaterial)) + 
+  geom_boxplot() +
+  labs(x="", colour="Micro polish")
+
+p5 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Sv.mean, colour=workedmaterial)) + 
+  geom_boxplot() +
+  labs(x="", colour="Micro polish")
+
+p6 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Sz.mean, colour=workedmaterial)) + 
+  geom_boxplot() +
+  labs(x="", colour="Micro polish")
+
+p7 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Sa.mean, colour=workedmaterial)) + 
+  geom_boxplot() +
+  labs(x="", colour="Micro polish")
+
+ggarrange(p1, p2, p3, p4, p5, p6, p7, ncol = 3, nrow = 3, common.legend = TRUE, legend="bottom")
+
+ggsave("../analysis/plots/confostats.png")
+
+
+```
+
+
+## End of script
+```{r}
+sessionInfo()
+```
+
+
