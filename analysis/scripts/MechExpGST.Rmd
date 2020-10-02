@@ -15,14 +15,16 @@ knitr::opts_knit$set(root.dir = "../", comment = NA, message = FALSE, indent = "
 
 __Brief description of the script__
 
-This R markdown socument reads, summarizes and plots data for the manuscript Paixao et al.
+This R markdown document reads, summarizes and plots data for the manuscript Paixao et al.
 The document contais:
 
 1. Manuscript tables
 2. Manuscript figures (data plots)
 3. Supplementary material, including extra tables and figures (data plots)
 
-This R project and respective script follows the proceadures described by Marwick et al. 2017. To compile this markdown document do not delete or move files from their original folders.
+This R project and respective script follows the proceadures described by Marwick et al. 2017. 
+
+To compile this markdown document do not delete or move files from their original folders.
 Please note that the tables and figures in this file do not match the numbering in the original manuscript.
 
 For any questions, comments and inputs, please contact:
@@ -31,8 +33,10 @@ Joao Marreiros, marreiros@rgzm.de, or Eduardo Paixao, paixao@rgzm.de
 
 # Load data into R project
 
-*Imported files are in: '("../analysis/raw_data")'*
-*Figures are saved in: '"../analysis/plots")`'*
+*Imported files are in: '`r paste0("../analysis/raw_data")`'*
+
+*Figures are saved in: '`r paste0("../analysis/plots")`'*
+
 *Tables are saved in: '`r paste0("../analysis/derived_data")`'*
 
 1) Load libraries and datasets
@@ -49,8 +53,9 @@ library(kableExtra)
 library(GGally)
 library(doBy)
 library(ggpubr)
+library(ggfortify)
 
-# Load datasets
+# Import datasets
 
 gisdata <- read.csv("../analysis/raw_data/gisdata.csv")
 confocaldata <- read_csv("../analysis/raw_data/confocaldata.csv")
@@ -80,70 +85,132 @@ str(confocaldata)
 
 ```{r fig.height = 6.5, fig.width = 8.5, res = 300}
 
-# Compute proportions for perimeter and area groupped by sample and parameter
+# Compute proportions for perimeter and area grouped by sample and parameter
 
 slope <- filter(gisdata, parameter == "slope")
+slopebefore <- filter(slope, cycle == "before")
+slopeafter <-  filter(slope, cycle == "after")
 
+# before experimental cycles (natural surfaces)
 
-id2.5 <- filter(slope, sample == "id2-5")
-id3.3 <- filter(slope, sample == "id3-3")
-id3.8 <- filter(slope, sample == "id3-8")
-id3.9 <- filter(slope, sample == "id3-9")
-id6.1 <- filter(slope, sample == "id6-1")
-id6.3 <- filter(slope, sample == "id6-3")
-id6.6 <- filter(slope, sample == "id6-6")
-id6.7 <- filter(slope, sample == "id6-7")
+id2.5before <- filter(slopebefore, sample == "id2-5")
+id3.3before <- filter(slopebefore, sample == "id3-3")
+id3.8before <- filter(slopebefore, sample == "id3-8")
+id3.9before <- filter(slopebefore, sample == "id3-9")
+id6.1before <- filter(slopebefore, sample == "id6-1")
+id6.3before <- filter(slopebefore, sample == "id6-3")
+id6.6before <- filter(slopebefore, sample == "id6-6")
+id6.7before <- filter(slopebefore, sample == "id6-7")
 
-id2.5 <- id2.5 %>%
+id2.5before <- id2.5before %>%
   group_by(sample) %>%
   mutate(
     areaperc = area / sum(area) * 100,
     perimperc = perimeter / sum(perimeter) * 100)
 
-id3.3 <- id3.3 %>%
+id3.3before <- id3.3before %>%
   group_by(sample) %>%
   mutate(
     areaperc = area / sum(area) * 100,
     perimperc = perimeter / sum(perimeter) * 100)
 
-id3.8 <- id3.8 %>%
+id3.8before <- id3.8before %>%
   group_by(sample) %>%
   mutate(
     areaperc = area / sum(area) * 100,
     perimperc = perimeter / sum(perimeter) * 100)
 
-id3.9 <- id3.9 %>%
+id3.9before <- id3.9before %>%
   group_by(sample) %>%
   mutate(
     areaperc = area / sum(area) * 100,
     perimperc = perimeter / sum(perimeter) * 100)
 
-id6.1 <- id6.1 %>%
+id6.1before <- id6.1before %>%
   group_by(sample) %>%
   mutate(
     areaperc = area / sum(area) * 100,
     perimperc = perimeter / sum(perimeter) * 100)
 
-id6.3 <- id6.3 %>%
+id6.3before <- id6.3before %>%
   group_by(sample) %>%
   mutate(
     areaperc = area / sum(area) * 100,
     perimperc = perimeter / sum(perimeter) * 100)
 
-id6.6 <- id6.6 %>%
+id6.6before <- id6.6before %>%
   group_by(sample) %>%
   mutate(
     areaperc = area / sum(area) * 100,
     perimperc = perimeter / sum(perimeter) * 100)
 
-id6.7 <- id6.7 %>%
+id6.7before <- id6.7before %>%
   group_by(sample) %>%
   mutate(
     areaperc = area / sum(area) * 100,
     perimperc = perimeter / sum(perimeter) * 100)
 
-newslope <- do.call("rbind", list(id2.5, id3.3, id3.8, id3.9, id6.1, id6.3, id6.6, id6.7))
+# after experimental cycles
 
+id2.5after <- filter(slopeafter, sample == "id2-5")
+id3.3after <- filter(slopeafter, sample == "id3-3")
+id3.8after <- filter(slopeafter, sample == "id3-8")
+id3.9after <- filter(slopeafter, sample == "id3-9")
+id6.1after <- filter(slopeafter, sample == "id6-1")
+id6.3after <- filter(slopeafter, sample == "id6-3")
+id6.6after <- filter(slopeafter, sample == "id6-6")
+id6.7after <- filter(slopeafter, sample == "id6-7")
+
+id2.5after <- id2.5after %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id3.3after <- id3.3after %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id3.8after <- id3.8after %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id3.9after <- id3.9after %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id6.1after <- id6.1after %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id6.3after <- id6.3after %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id6.6after <- id6.6after %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id6.7after <- id6.7after %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+
+newslope <- do.call("rbind", list(id2.5before, id3.3before, id3.8before, id3.9before, id6.1before, id6.3before, id6.6before, id6.7before, id2.5after, id3.3after, id3.8after, id3.9after, id6.1after, id6.3after, id6.6after, id6.7after))
 
 # save output
 
@@ -151,27 +218,58 @@ write_csv(newslope,"../analysis/derived_data/newslope.csv")
 
 # Plot data
 
+# Area %
 
-areaP <- ggplot(newslope, aes(x = elev_max, y = areaperc, colour = motion)) +
+impactdf <- filter(newslope, motion == "Impact")
+grinding <- filter(newslope, motion == "Grinding")
+
+
+areaimpact <- ggplot(impactdf, aes(x = elev_max, y = areaperc, colour = cycle)) +
   geom_line() +
   facet_wrap(~sample, scale = "free") +
-  ylab("Percentage of area") +
+  ggtitle("Slope analysis, impact") +
+  ylab("Area %") +
   xlab("Slope in º")
 
-areaP
-ggsave("../analysis/plots/slopearea.png")
+areaimpact
+
+ggsave("../analysis/plots/slopeareaimpact.png")
 
 
-perimP <- ggplot(newslope, aes(x = elev_max, y = perimperc, colour = motion)) +
+areagrinding <- ggplot(grinding, aes(x = elev_max, y = areaperc, colour = cycle)) +
   geom_line() +
   facet_wrap(~sample, scale = "free") +
-  ylab("Percentage of area") +
+  ggtitle("Slope analysis, grinding") +
+  ylab("Area %") +
   xlab("Slope in º")
 
-perimP
-ggsave("../analysis/plots/slopeperim.png")
+areagrinding
 
+ggsave("../analysis/plots/slopeareagrinding.png")
 
+# Perimeter %
+
+perimimpact <- ggplot(impactdf, aes(x = elev_max, y = perimperc, colour = cycle)) +
+  geom_line() +
+  facet_wrap(~sample) +
+  ggtitle("Slope, impact") +
+  ylab("Perimeter %") +
+  xlab("Slope in º")
+
+perimimpact
+
+ggsave("../analysis/plots/slopeperimimpact.png")
+
+perimgrinding <- ggplot(grinding, aes(x = elev_max, y = perimperc, colour = cycle)) +
+  geom_line() +
+  facet_wrap(~sample, scale = "free") +
+  ggtitle("Slope, grinding") +
+  ylab("Peerimeter %") +
+  xlab("Slope in º")
+
+perimgrinding
+
+ggsave("../analysis/plots/slopeperimgrinding.png")
 
 
 ```
@@ -181,65 +279,131 @@ ggsave("../analysis/plots/slopeperim.png")
 ```{r fig.height = 6.5, fig.width = 8.5, res = 300}
 
 tri <- filter(gisdata, parameter == "tri")
+tribefore <- filter(tri, cycle == "before")
+triafter <- filter(tri, cycle =="after")
 
-id2.5 <- filter(tri, sample == "id2-5")
-id3.3 <- filter(tri, sample == "id3-3")
-id3.8 <- filter(tri, sample == "id3-8")
-id3.9 <- filter(tri, sample == "id3-9")
-id6.1 <- filter(tri, sample == "id6-1")
-id6.3 <- filter(tri, sample == "id6-3")
-id6.6 <- filter(tri, sample == "id6-6")
-id6.7 <- filter(tri, sample == "id6-7")
 
-id2.5 <- id2.5 %>%
+# before experimental cycles (natural surfaces)
+
+id2.5before <- filter(tribefore, sample == "id2-5")
+id3.3before <- filter(tribefore, sample == "id3-3")
+id3.8before <- filter(tribefore, sample == "id3-8")
+id3.9before <- filter(tribefore, sample == "id3-9")
+id6.1before <- filter(tribefore, sample == "id6-1")
+id6.3before <- filter(tribefore, sample == "id6-3")
+id6.6before <- filter(tribefore, sample == "id6-6")
+id6.7before <- filter(tribefore, sample == "id6-7")
+
+id2.5before <- id2.5before %>%
   group_by(sample) %>%
   mutate(
     areaperc = area / sum(area) * 100,
     perimperc = perimeter / sum(perimeter) * 100)
 
-id3.3 <- id3.3 %>%
+id3.3before <- id3.3before %>%
   group_by(sample) %>%
   mutate(
     areaperc = area / sum(area) * 100,
     perimperc = perimeter / sum(perimeter) * 100)
 
-id3.8 <- id3.8 %>%
+id3.8before <- id3.8before %>%
   group_by(sample) %>%
   mutate(
     areaperc = area / sum(area) * 100,
     perimperc = perimeter / sum(perimeter) * 100)
 
-id3.9 <- id3.9 %>%
+id3.9before <- id3.9before %>%
   group_by(sample) %>%
   mutate(
     areaperc = area / sum(area) * 100,
     perimperc = perimeter / sum(perimeter) * 100)
 
-id6.1 <- id6.1 %>%
+id6.1before <- id6.1before %>%
   group_by(sample) %>%
   mutate(
     areaperc = area / sum(area) * 100,
     perimperc = perimeter / sum(perimeter) * 100)
 
-id6.3 <- id6.3 %>%
+id6.3before <- id6.3before %>%
   group_by(sample) %>%
   mutate(
     areaperc = area / sum(area) * 100,
     perimperc = perimeter / sum(perimeter) * 100)
 
-id6.6 <- id6.6 %>%
+id6.6before <- id6.6before %>%
   group_by(sample) %>%
   mutate(
     areaperc = area / sum(area) * 100,
     perimperc = perimeter / sum(perimeter) * 100)
 
-id6.7 <- id6.7 %>%
+id6.7before <- id6.7before %>%
   group_by(sample) %>%
   mutate(
     areaperc = area / sum(area) * 100,
     perimperc = perimeter / sum(perimeter) * 100)
 
-newtri <- do.call("rbind", list(id2.5, id3.3, id3.8, id3.9, id6.1, id6.3, id6.6, id6.7))
+
+# after experimental cycles
+
+id2.5after <- filter(triafter, sample == "id2-5")
+id3.3after <- filter(triafter, sample == "id3-3")
+id3.8after <- filter(triafter, sample == "id3-8")
+id3.9after <- filter(triafter, sample == "id3-9")
+id6.1after <- filter(triafter, sample == "id6-1")
+id6.3after <- filter(triafter, sample == "id6-3")
+id6.6after <- filter(triafter, sample == "id6-6")
+id6.7after <- filter(triafter, sample == "id6-7")
+
+id2.5after <- id2.5after %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id3.3after <- id3.3after %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id3.8after <- id3.8after %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id3.9after <- id3.9after %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id6.1after <- id6.1after %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id6.3after <- id6.3after %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id6.6after <- id6.6after %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+id6.7after <- id6.7after %>%
+  group_by(sample) %>%
+  mutate(
+    areaperc = area / sum(area) * 100,
+    perimperc = perimeter / sum(perimeter) * 100)
+
+
+newtri <- do.call("rbind", list(id2.5before, id3.3before, id3.8before, id3.9before, id6.1before, id6.3before, id6.6before, id6.7before, id2.5after, id3.3after, id3.8after, id3.9after, id6.1after, id6.3after, id6.6after, id6.7after))
 
 # save output
 
@@ -247,26 +411,56 @@ write_csv(newtri,"../analysis/derived_data/newtri.csv")
 
 # Plot data
 
+# Area %
 
-areaP <- ggplot(newtri, aes(x = elev_max, y = areaperc, colour = motion)) +
+impactdf <- filter(newtri, motion == "Impact")
+grinding <- filter(newtri, motion == "Grinding")
+
+areaimpact <- ggplot(impactdf, aes(x = elev_max, y = areaperc, colour = cycle)) +
   geom_line() +
   facet_wrap(~sample, scale = "free") +
-  ylab("Percentage of area") +
+  ggtitle("TRI analysis, impact") +
+  ylab("Area %") +
   xlab("TRI")
 
-areaP
-ggsave("../analysis/plots/triarea.png")
+areaimpact 
 
+ggsave("../analysis/plots/triareaimpact.png")
 
-perimP <- ggplot(newtri, aes(x = elev_max, y = perimperc, colour = motion)) +
+areagrinding <- ggplot(grinding, aes(x = elev_max, y = areaperc, colour = cycle)) +
   geom_line() +
   facet_wrap(~sample, scale = "free") +
-  ylab("Percentage of area") +
+  ggtitle("TRI analysis, grinding") +
+  ylab("Area %") +
   xlab("TRI")
 
-perimP
-ggsave("../analysis/plots/perimtri.png")
+areagrinding
 
+ggsave("../analysis/plots/triareagrinding.png")
+
+# Perimeter %
+
+perimimpact <- ggplot(impactdf, aes(x = elev_max, y = perimperc, colour = cycle)) +
+  geom_line() +
+  facet_wrap(~sample) +
+  ggtitle("TRI analysis, impact") +
+  ylab("Perimeter %") +
+  xlab("TRI")
+
+perimimpact
+
+ggsave("../analysis/plots/triperimimpact.png")
+
+perimgrinding <- ggplot(grinding, aes(x = elev_max, y = perimperc, colour = cycle)) +
+  geom_line() +
+  facet_wrap(~sample, scale = "free") +
+  ggtitle("TRI analysis, grinding") +
+  ylab("Perimeter %") +
+  xlab("TRI")
+
+perimgrinding
+
+ggsave("../analysis/plots/triperimgrinding.png")
 
 
 ```
@@ -278,7 +472,7 @@ ggsave("../analysis/plots/perimtri.png")
 
 # Compute descriptive statistics
 
-# Scatterplot matrix for the ISO 25178 Height parameters
+# Scatterplot matrix for the ISO 25178 Area scale, Height and volume parameters
 
 data(confocaldata, package = "reshape")
 
@@ -294,7 +488,21 @@ ggpairs(data=confocaldata,
     theme(legend.position = "right") +
   labs(fill = "Micro polish type")
 
-ggsave("../analysis/plots/confocal.png")
+ggsave("../analysis/plots/confocalarea.png")
+
+ggpairs(data=confocaldata,
+        columns = c(36:41),
+        cardinality_threshold = 30,
+        mapping = ggplot2::aes(color = workedmaterial, shape = motion),
+        lower = list(continuous = wrap("points", alpha = 1, size = 2)),
+        upper = list(continuous = "blank"),
+        legend = c(2,1)
+        ) +
+
+    theme(legend.position = "right") +
+  labs(fill = "Micro polish type")
+
+ggsave("../analysis/plots/confocalvolume.png")
 
 # compute descriptive statistics
 
@@ -311,7 +519,7 @@ nminmaxmeanmedsd <- function(x){
  	return(out)
 }
 
-positions <- c(1:5,21:27)
+positions <- c(1:5,21:27,36:41)
 df <- confocaldata %>% 
   select(positions)
 
@@ -321,8 +529,10 @@ confostats <- summaryBy(.~sample+workedmaterial, data=df[c("sample", "motion","w
 
 write_csv(confostats, "../analysis/derived_data/confostats.csv")
 
-# Plot confostats for the ISO 25178 Height parameters
+# Plot confostats for the ISO 25178 Area-scale, Height and volume parameters
 # select parameter from datase
+
+# firts Height parameters
 
 heightconfostats <- select(confostats,sample,workedmaterial, Sq.mean,Ssk.mean,Sku.mean,Sp.mean,Sv.mean,Sz.mean,Sa.mean)
 
@@ -330,10 +540,12 @@ p1 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Sq.mean, colour=workedmat
   geom_boxplot() +
   labs(x="", colour="Micro polish")
 
-p2 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Ssk.mean, colour=workedmaterial)) +   geom_boxplot() +
+p2 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Ssk.mean, colour=workedmaterial)) +   
+  geom_boxplot() +
   labs(x="", colour="Micro polish")
 
-p3 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Sku.mean, colour=workedmaterial)) +   geom_boxplot() +
+p3 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Sku.mean, colour=workedmaterial)) +   
+  geom_boxplot() +
   labs(x="", colour="Micro polish")
 
 p4 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Sp.mean, colour=workedmaterial)) + 
@@ -354,11 +566,42 @@ p7 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Sa.mean, colour=workedmat
 
 ggarrange(p1, p2, p3, p4, p5, p6, p7, ncol = 3, nrow = 3, common.legend = TRUE, legend="bottom")
 
-ggsave("../analysis/plots/confostats.png")
+ggsave("../analysis/plots/confostatsarea.png")
+
+# Now Volume parameters
+
+volumeconfostats <- select(confostats,sample,workedmaterial, Vm.mean,Vv.mean,Vmp.mean,Vmc.mean,Vvc.mean,Vvv.mean)
+
+p8 <- ggplot(volumeconfostats, aes(x=workedmaterial, y=Vm.mean, colour=workedmaterial)) + 
+  geom_boxplot() +
+  labs(x="", colour="Micro polish")
+
+p9 <- ggplot(volumeconfostats, aes(x=workedmaterial, y=Vv.mean, colour=workedmaterial)) +   
+  geom_boxplot() +
+  labs(x="", colour="Micro polish")
+
+p10 <- ggplot(volumeconfostats, aes(x=workedmaterial, y=Vmp.mean, colour=workedmaterial)) +   
+  geom_boxplot() +
+  labs(x="", colour="Micro polish")
+
+p11 <- ggplot(volumeconfostats, aes(x=workedmaterial, y=Vmc.mean, colour=workedmaterial)) + 
+  geom_boxplot() +
+  labs(x="", colour="Micro polish")
+
+p12 <- ggplot(volumeconfostats, aes(x=workedmaterial, y=Vvc.mean, colour=workedmaterial)) + 
+  geom_boxplot() +
+  labs(x="", colour="Micro polish")
+
+p13 <- ggplot(volumeconfostats, aes(x=workedmaterial, y=Vvv.mean, colour=workedmaterial)) + 
+  geom_boxplot() +
+  labs(x="", colour="Micro polish")
+
+ggarrange(p8, p9, p10, p11, p12, p13, ncol = 3, nrow = 3, common.legend = TRUE, legend="bottom")
+
+ggsave("../analysis/plots/confostatvolume.png")
 
 
 ```
-
 
 ## End of script
 ```{r}

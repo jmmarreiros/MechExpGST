@@ -1,0 +1,1215 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={SOM - Read and plot data from the manuscript Paixao et al.},
+  pdfauthor={Paixao et al.~Using Mechanical experiments to study Ground Stone Tools use: exploring the formation of percussive and grinding wear traces on Limestone tools},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+
+\title{SOM - Read and plot data from the manuscript Paixao et al.}
+\author{Paixao et al.~Using Mechanical experiments to study Ground Stone Tools
+use: exploring the formation of percussive and grinding wear traces on
+Limestone tools}
+\date{28/09/2020}
+
+\begin{document}
+\maketitle
+
+\textbf{Brief description of the script}
+
+This R markdown document reads, summarizes and plots data for the
+manuscript Paixao et al. The document contais:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Manuscript tables
+\item
+  Manuscript figures (data plots)
+\item
+  Supplementary material, including extra tables and figures (data
+  plots)
+\end{enumerate}
+
+This R project and respective script follows the proceadures described
+by Marwick et al.~2017.
+
+To compile this markdown document do not delete or move files from their
+original folders. Please note that the tables and figures in this file
+do not match the numbering in the original manuscript.
+
+For any questions, comments and inputs, please contact:
+
+Joao Marreiros,
+\href{mailto:marreiros@rgzm.de}{\nolinkurl{marreiros@rgzm.de}}, or
+Eduardo Paixao, \href{mailto:paixao@rgzm.de}{\nolinkurl{paixao@rgzm.de}}
+
+\hypertarget{load-data-into-r-project}{%
+\section{Load data into R project}\label{load-data-into-r-project}}
+
+\emph{Imported files are in: `../analysis/raw\_data'}
+
+\emph{Figures are saved in: `../analysis/plots'}
+
+\emph{Tables are saved in: `../analysis/derived\_data'}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  Load libraries and datasets
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Load required libraries}
+
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching packages ---------------------------------------------------------- tidyverse 1.3.0 --
+\end{verbatim}
+
+\begin{verbatim}
+## v ggplot2 3.3.2     v purrr   0.3.4
+## v tibble  3.0.3     v dplyr   1.0.2
+## v tidyr   1.1.2     v stringr 1.4.0
+## v readr   1.3.1     v forcats 0.5.0
+\end{verbatim}
+
+\begin{verbatim}
+## -- Conflicts ------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(utils)}
+\KeywordTok{library}\NormalTok{(knitr)}
+\KeywordTok{library}\NormalTok{(janitor)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'janitor'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     chisq.test, fisher.test
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(kableExtra)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'kableExtra'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:dplyr':
+## 
+##     group_rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(GGally)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Registered S3 method overwritten by 'GGally':
+##   method from   
+##   +.gg   ggplot2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(doBy)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'doBy'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:dplyr':
+## 
+##     order_by
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggpubr)}
+\KeywordTok{library}\NormalTok{(ggfortify)}
+
+\CommentTok{# Import datasets}
+
+\NormalTok{gisdata <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"../analysis/raw_data/gisdata.csv"}\NormalTok{)}
+\NormalTok{confocaldata <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"../analysis/raw_data/confocaldata.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Parsed with column specification:
+## cols(
+##   .default = col_double(),
+##   Name = col_character(),
+##   `Created on` = col_character(),
+##   sample = col_character(),
+##   motion = col_character(),
+##   workedmaterial = col_character(),
+##   `Studiable type` = col_character(),
+##   `Axis name - X` = col_character(),
+##   `Axis name - Y` = col_character(),
+##   `Axis name - Z` = col_character(),
+##   `Layer type - Z` = col_character(),
+##   `Lengthscale anisotropy Sfrax epLsar` = col_character(),
+##   `Lengthscale anisotropy NewEplsar` = col_character()
+## )
+\end{verbatim}
+
+\begin{verbatim}
+## See spec(...) for full column specifications.
+\end{verbatim}
+
+In this study, two datasets are used:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  \textbf{gisdata.csv}: dataset for the QGIS analysis
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(gisdata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    355 obs. of  12 variables:
+##  $ sample   : chr  "id2-5" "id2-5" "id3-3" "id3-3" ...
+##  $ cycle    : chr  "before" "before" "before" "before" ...
+##  $ parameter: chr  "tri" "tri" "tri" "tri" ...
+##  $ motion   : chr  "Impact" "Impact" "Impact" "Impact" ...
+##  $ material : chr  "Flint" "Flint" "Flint" "Flint" ...
+##  $ id       : int  0 1 0 1 2 3 4 0 1 0 ...
+##  $ elev_min : num  0 0.01 0 0.01 0.02 0.03 0.04 0 0.01 0 ...
+##  $ elev_max : num  0.01 0.02 0.01 0.02 0.03 0.04 0.05 0.01 0.02 0.01 ...
+##  $ nparts   : int  1007 1010 131 165 47 10 1 11 12 6 ...
+##  $ npoints  : int  67487 59648 14961 16143 3142 423 7 6559 1248 8538 ...
+##  $ perimeter: num  485.2 446 160.6 177.5 32.8 ...
+##  $ area     : num  204.49 17.48 83.65 38.12 1.83 ...
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \textbf{confocaldata.csv}: dataset for the Confocal microscopy surface
+  texture analysis
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{str}\NormalTok{(confocaldata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## tibble [25 x 54] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ Name                               : chr [1:25] "Lime2-5_LSM_50x075_suf1_Topo > Leveled (LS-plane) > Form removed (LS-poly 3) > Outliers removed > Thresholded (0.1000 %" "Lime2-5_LSM_50x075_suf2_Topo > Leveled (LS-plane) > Form removed (LS-poly 3) > Outliers removed > Thresholded (0.1000 %" "Lime2-5_LSM_50x075_suf3_Topo > Leveled (LS-plane) > Form removed (LS-poly 3) > Outliers removed > Thresholded (0.1000 %" "lime3-3_lsm_50x-0.75_20200914_surf2_Topo > Leveled (LS-plane) > Form removed (LS-poly 3) > Outliers removed > T"| __truncated__ ...
+##  $ Created on                         : chr [1:25] "6/24/2020 12:03:05 PM" "6/24/2020 12:21:59 PM" "6/24/2020 1:26:11 PM" "9/14/2020 12:02:32 PM" ...
+##  $ sample                             : chr [1:25] "id2-5" "id2-5" "id2-5" "id3-3" ...
+##  $ motion                             : chr [1:25] "impact" "impact" "impact" "impact" ...
+##  $ workedmaterial                     : chr [1:25] "flint" "flint" "flint" "flint" ...
+##  $ Studiable type                     : chr [1:25] "Surface" "Surface" "Surface" "Surface" ...
+##  $ Axis name - X                      : chr [1:25] "X" "X" "X" "X" ...
+##  $ Axis length - X                    : num [1:25] 255 255 255 255 255 ...
+##  $ Axis size - X                      : num [1:25] 3000 3000 3000 1024 1024 ...
+##  $ Axis spacing - X                   : num [1:25] 85.2 85.2 85.2 249.6 249.6 ...
+##  $ Axis name - Y                      : chr [1:25] "Y" "Y" "Y" "Y" ...
+##  $ Axis length - Y                    : num [1:25] 255 255 255 255 255 ...
+##  $ Axis size - Y                      : num [1:25] 3000 3000 3000 1024 1024 ...
+##  $ Axis spacing - Y                   : num [1:25] 85.2 85.2 85.2 249.6 249.6 ...
+##  $ Axis name - Z                      : chr [1:25] "Z" "Z" "Z" "Z" ...
+##  $ Layer type - Z                     : chr [1:25] "Topography" "Topography" "Topography" "Topography" ...
+##  $ Axis length - Z                    : num [1:25] 8.3 30.6 14.9 48.6 23 ...
+##  $ Axis size - Z                      : num [1:25] 128164 333950 130813 193492 260079 ...
+##  $ Axis spacing - Z                   : num [1:25] 0.0647 0.0916 0.1139 0.2511 0.0884 ...
+##  $ NM-points ratio - Z                : num [1:25] 0 0 0 0 0 0 0 0 0 0 ...
+##  $ Sq                                 : num [1:25] 0.836 4.619 2.321 5.348 3.491 ...
+##  $ Ssk                                : num [1:25] 0.997 0.107 0.142 -0.491 0.201 ...
+##  $ Sku                                : num [1:25] 8.63 4.48 3.11 5.97 3.46 ...
+##  $ Sp                                 : num [1:25] 4.8 15.02 7.46 23 11.88 ...
+##  $ Sv                                 : num [1:25] 3.49 15.58 7.45 25.58 11.11 ...
+##  $ Sz                                 : num [1:25] 8.3 30.6 14.9 48.6 23 ...
+##  $ Sa                                 : num [1:25] 0.572 3.244 1.819 3.887 2.699 ...
+##  $ Smr                                : num [1:25] 0.464 0.497 0.448 0.18 0.354 ...
+##  $ Smc                                : num [1:25] 0.775 5.691 2.944 5.799 4.436 ...
+##  $ Sxp                                : num [1:25] 1.53 10.61 4.3 11.65 6.74 ...
+##  $ Sal                                : num [1:25] 13.5 18.9 20.1 18.7 22.9 ...
+##  $ Str                                : num [1:25] 0.371 0.416 0.592 0.468 0.803 ...
+##  $ Std                                : num [1:25] 149 65 150 51 124 ...
+##  $ Sdq                                : num [1:25] 0.328 1.153 0.688 1.126 0.897 ...
+##  $ Sdr                                : num [1:25] 4.36 20.02 16.47 31.23 24.6 ...
+##  $ Vm                                 : num [1:25] 0.0866 0.3378 0.1331 0.3133 0.2114 ...
+##  $ Vv                                 : num [1:25] 0.861 6.029 3.078 6.113 4.648 ...
+##  $ Vmp                                : num [1:25] 0.0866 0.3378 0.1331 0.3133 0.2114 ...
+##  $ Vmc                                : num [1:25] 0.528 3.111 2.097 3.932 3.146 ...
+##  $ Vvc                                : num [1:25] 0.769 5.335 2.824 5.33 4.303 ...
+##  $ Vvv                                : num [1:25] 0.0923 0.694 0.2534 0.7826 0.3444 ...
+##  $ Maximum depth of furrows           : num [1:25] 4.56 20.63 7.65 25.68 13.88 ...
+##  $ Mean depth of furrows              : num [1:25] 0.962 4.63 2.49 5.112 3.932 ...
+##  $ Mean density of furrows            : num [1:25] 4523 3830 4509 2286 2201 ...
+##  $ First direction                    : num [1:25] 1.50e+02 6.36e+01 2.66e-03 9.00e+01 9.00e+01 ...
+##  $ Second direction                   : num [1:25] 180 45 154 45 135 ...
+##  $ Third direction                    : num [1:25] 141.3 56.2 63.5 51.2 123.7 ...
+##  $ Isotropy                           : num [1:25] 23.5 26.2 77.8 33.1 73.8 ...
+##  $ Lengthscale anisotropy Sfrax epLsar: chr [1:25] "*****" "*****" "*****" "0.000493204" ...
+##  $ Lengthscale anisotropy NewEplsar   : chr [1:25] "*****" "*****" "*****" "0.017686885" ...
+##  $ Fractal complexity Asfc            : num [1:25] 8.66 23.18 30.55 37.79 44.11 ...
+##  $ Scale of max complexity Smfc       : num [1:25] 1.71e+06 1.81e+08 2.71e+06 1.17e+01 1.52e+01 ...
+##  $ HAsfc9                             : num [1:25] 0.449 2.496 0.388 0.544 0.254 ...
+##  $ HAsfc81                            : num [1:25] 0.659 3.446 0.481 0.701 0.487 ...
+##  - attr(*, "spec")=
+##   .. cols(
+##   ..   Name = col_character(),
+##   ..   `Created on` = col_character(),
+##   ..   sample = col_character(),
+##   ..   motion = col_character(),
+##   ..   workedmaterial = col_character(),
+##   ..   `Studiable type` = col_character(),
+##   ..   `Axis name - X` = col_character(),
+##   ..   `Axis length - X` = col_double(),
+##   ..   `Axis size - X` = col_double(),
+##   ..   `Axis spacing - X` = col_double(),
+##   ..   `Axis name - Y` = col_character(),
+##   ..   `Axis length - Y` = col_double(),
+##   ..   `Axis size - Y` = col_double(),
+##   ..   `Axis spacing - Y` = col_double(),
+##   ..   `Axis name - Z` = col_character(),
+##   ..   `Layer type - Z` = col_character(),
+##   ..   `Axis length - Z` = col_double(),
+##   ..   `Axis size - Z` = col_double(),
+##   ..   `Axis spacing - Z` = col_double(),
+##   ..   `NM-points ratio - Z` = col_double(),
+##   ..   Sq = col_double(),
+##   ..   Ssk = col_double(),
+##   ..   Sku = col_double(),
+##   ..   Sp = col_double(),
+##   ..   Sv = col_double(),
+##   ..   Sz = col_double(),
+##   ..   Sa = col_double(),
+##   ..   Smr = col_double(),
+##   ..   Smc = col_double(),
+##   ..   Sxp = col_double(),
+##   ..   Sal = col_double(),
+##   ..   Str = col_double(),
+##   ..   Std = col_double(),
+##   ..   Sdq = col_double(),
+##   ..   Sdr = col_double(),
+##   ..   Vm = col_double(),
+##   ..   Vv = col_double(),
+##   ..   Vmp = col_double(),
+##   ..   Vmc = col_double(),
+##   ..   Vvc = col_double(),
+##   ..   Vvv = col_double(),
+##   ..   `Maximum depth of furrows` = col_double(),
+##   ..   `Mean depth of furrows` = col_double(),
+##   ..   `Mean density of furrows` = col_double(),
+##   ..   `First direction` = col_double(),
+##   ..   `Second direction` = col_double(),
+##   ..   `Third direction` = col_double(),
+##   ..   Isotropy = col_double(),
+##   ..   `Lengthscale anisotropy Sfrax epLsar` = col_character(),
+##   ..   `Lengthscale anisotropy NewEplsar` = col_character(),
+##   ..   `Fractal complexity Asfc` = col_double(),
+##   ..   `Scale of max complexity Smfc` = col_double(),
+##   ..   HAsfc9 = col_double(),
+##   ..   HAsfc81 = col_double()
+##   .. )
+\end{verbatim}
+
+\newpage
+
+\hypertarget{gis-analysis-terrain-analysis-for-slope-and-tri}{%
+\section{GIS analysis, Terrain analysis for Slope and
+TRI}\label{gis-analysis-terrain-analysis-for-slope-and-tri}}
+
+\hypertarget{slope}{%
+\subsection{Slope}\label{slope}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Compute proportions for perimeter and area grouped by sample and parameter}
+
+\NormalTok{slope <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(gisdata, parameter }\OperatorTok{==}\StringTok{ "slope"}\NormalTok{)}
+\NormalTok{slopebefore <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(slope, cycle }\OperatorTok{==}\StringTok{ "before"}\NormalTok{)}
+\NormalTok{slopeafter <-}\StringTok{  }\KeywordTok{filter}\NormalTok{(slope, cycle }\OperatorTok{==}\StringTok{ "after"}\NormalTok{)}
+
+\CommentTok{# before experimental cycles (natural surfaces)}
+
+\NormalTok{id2}\FloatTok{.5}\NormalTok{before <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(slopebefore, sample }\OperatorTok{==}\StringTok{ "id2-5"}\NormalTok{)}
+\NormalTok{id3}\FloatTok{.3}\NormalTok{before <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(slopebefore, sample }\OperatorTok{==}\StringTok{ "id3-3"}\NormalTok{)}
+\NormalTok{id3}\FloatTok{.8}\NormalTok{before <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(slopebefore, sample }\OperatorTok{==}\StringTok{ "id3-8"}\NormalTok{)}
+\NormalTok{id3}\FloatTok{.9}\NormalTok{before <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(slopebefore, sample }\OperatorTok{==}\StringTok{ "id3-9"}\NormalTok{)}
+\NormalTok{id6}\FloatTok{.1}\NormalTok{before <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(slopebefore, sample }\OperatorTok{==}\StringTok{ "id6-1"}\NormalTok{)}
+\NormalTok{id6}\FloatTok{.3}\NormalTok{before <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(slopebefore, sample }\OperatorTok{==}\StringTok{ "id6-3"}\NormalTok{)}
+\NormalTok{id6}\FloatTok{.6}\NormalTok{before <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(slopebefore, sample }\OperatorTok{==}\StringTok{ "id6-6"}\NormalTok{)}
+\NormalTok{id6}\FloatTok{.7}\NormalTok{before <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(slopebefore, sample }\OperatorTok{==}\StringTok{ "id6-7"}\NormalTok{)}
+
+\NormalTok{id2}\FloatTok{.5}\NormalTok{before <-}\StringTok{ }\NormalTok{id2}\FloatTok{.5}\NormalTok{before }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id3}\FloatTok{.3}\NormalTok{before <-}\StringTok{ }\NormalTok{id3}\FloatTok{.3}\NormalTok{before }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id3}\FloatTok{.8}\NormalTok{before <-}\StringTok{ }\NormalTok{id3}\FloatTok{.8}\NormalTok{before }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id3}\FloatTok{.9}\NormalTok{before <-}\StringTok{ }\NormalTok{id3}\FloatTok{.9}\NormalTok{before }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id6}\FloatTok{.1}\NormalTok{before <-}\StringTok{ }\NormalTok{id6}\FloatTok{.1}\NormalTok{before }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id6}\FloatTok{.3}\NormalTok{before <-}\StringTok{ }\NormalTok{id6}\FloatTok{.3}\NormalTok{before }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id6}\FloatTok{.6}\NormalTok{before <-}\StringTok{ }\NormalTok{id6}\FloatTok{.6}\NormalTok{before }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id6}\FloatTok{.7}\NormalTok{before <-}\StringTok{ }\NormalTok{id6}\FloatTok{.7}\NormalTok{before }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\CommentTok{# after experimental cycles}
+
+\NormalTok{id2}\FloatTok{.5}\NormalTok{after <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(slopeafter, sample }\OperatorTok{==}\StringTok{ "id2-5"}\NormalTok{)}
+\NormalTok{id3}\FloatTok{.3}\NormalTok{after <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(slopeafter, sample }\OperatorTok{==}\StringTok{ "id3-3"}\NormalTok{)}
+\NormalTok{id3}\FloatTok{.8}\NormalTok{after <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(slopeafter, sample }\OperatorTok{==}\StringTok{ "id3-8"}\NormalTok{)}
+\NormalTok{id3}\FloatTok{.9}\NormalTok{after <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(slopeafter, sample }\OperatorTok{==}\StringTok{ "id3-9"}\NormalTok{)}
+\NormalTok{id6}\FloatTok{.1}\NormalTok{after <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(slopeafter, sample }\OperatorTok{==}\StringTok{ "id6-1"}\NormalTok{)}
+\NormalTok{id6}\FloatTok{.3}\NormalTok{after <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(slopeafter, sample }\OperatorTok{==}\StringTok{ "id6-3"}\NormalTok{)}
+\NormalTok{id6}\FloatTok{.6}\NormalTok{after <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(slopeafter, sample }\OperatorTok{==}\StringTok{ "id6-6"}\NormalTok{)}
+\NormalTok{id6}\FloatTok{.7}\NormalTok{after <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(slopeafter, sample }\OperatorTok{==}\StringTok{ "id6-7"}\NormalTok{)}
+
+\NormalTok{id2}\FloatTok{.5}\NormalTok{after <-}\StringTok{ }\NormalTok{id2}\FloatTok{.5}\NormalTok{after }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id3}\FloatTok{.3}\NormalTok{after <-}\StringTok{ }\NormalTok{id3}\FloatTok{.3}\NormalTok{after }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id3}\FloatTok{.8}\NormalTok{after <-}\StringTok{ }\NormalTok{id3}\FloatTok{.8}\NormalTok{after }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id3}\FloatTok{.9}\NormalTok{after <-}\StringTok{ }\NormalTok{id3}\FloatTok{.9}\NormalTok{after }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id6}\FloatTok{.1}\NormalTok{after <-}\StringTok{ }\NormalTok{id6}\FloatTok{.1}\NormalTok{after }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id6}\FloatTok{.3}\NormalTok{after <-}\StringTok{ }\NormalTok{id6}\FloatTok{.3}\NormalTok{after }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id6}\FloatTok{.6}\NormalTok{after <-}\StringTok{ }\NormalTok{id6}\FloatTok{.6}\NormalTok{after }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id6}\FloatTok{.7}\NormalTok{after <-}\StringTok{ }\NormalTok{id6}\FloatTok{.7}\NormalTok{after }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+
+\NormalTok{newslope <-}\StringTok{ }\KeywordTok{do.call}\NormalTok{(}\StringTok{"rbind"}\NormalTok{, }\KeywordTok{list}\NormalTok{(id2}\FloatTok{.5}\NormalTok{before, id3}\FloatTok{.3}\NormalTok{before, id3}\FloatTok{.8}\NormalTok{before, id3}\FloatTok{.9}\NormalTok{before, id6}\FloatTok{.1}\NormalTok{before, id6}\FloatTok{.3}\NormalTok{before, id6}\FloatTok{.6}\NormalTok{before, id6}\FloatTok{.7}\NormalTok{before, id2}\FloatTok{.5}\NormalTok{after, id3}\FloatTok{.3}\NormalTok{after, id3}\FloatTok{.8}\NormalTok{after, id3}\FloatTok{.9}\NormalTok{after, id6}\FloatTok{.1}\NormalTok{after, id6}\FloatTok{.3}\NormalTok{after, id6}\FloatTok{.6}\NormalTok{after, id6}\FloatTok{.7}\NormalTok{after))}
+
+\CommentTok{# save output}
+
+\KeywordTok{write_csv}\NormalTok{(newslope,}\StringTok{"../analysis/derived_data/newslope.csv"}\NormalTok{)}
+
+\CommentTok{# Plot data}
+
+\CommentTok{# Area %}
+
+\NormalTok{impactdf <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(newslope, motion }\OperatorTok{==}\StringTok{ "Impact"}\NormalTok{)}
+\NormalTok{grinding <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(newslope, motion }\OperatorTok{==}\StringTok{ "Grinding"}\NormalTok{)}
+
+
+\NormalTok{areaimpact <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(impactdf, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ elev_max, }\DataTypeTok{y =}\NormalTok{ areaperc, }\DataTypeTok{colour =}\NormalTok{ cycle)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{sample, }\DataTypeTok{scale =} \StringTok{"free"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Slope analysis, impact"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Area %"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Slope in º"}\NormalTok{)}
+
+\NormalTok{areaimpact}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{MechExpGST_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggsave}\NormalTok{(}\StringTok{"../analysis/plots/slopeareaimpact.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Saving 8.5 x 6.5 in image
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{areagrinding <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(grinding, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ elev_max, }\DataTypeTok{y =}\NormalTok{ areaperc, }\DataTypeTok{colour =}\NormalTok{ cycle)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{sample, }\DataTypeTok{scale =} \StringTok{"free"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Slope analysis, grinding"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Area %"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Slope in º"}\NormalTok{)}
+
+\NormalTok{areagrinding}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{MechExpGST_files/figure-latex/unnamed-chunk-4-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggsave}\NormalTok{(}\StringTok{"../analysis/plots/slopeareagrinding.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Saving 8.5 x 6.5 in image
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Perimeter %}
+
+\NormalTok{perimimpact <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(impactdf, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ elev_max, }\DataTypeTok{y =}\NormalTok{ perimperc, }\DataTypeTok{colour =}\NormalTok{ cycle)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{sample) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Slope, impact"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Perimeter %"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Slope in º"}\NormalTok{)}
+
+\NormalTok{perimimpact}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{MechExpGST_files/figure-latex/unnamed-chunk-4-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggsave}\NormalTok{(}\StringTok{"../analysis/plots/slopeperimimpact.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Saving 8.5 x 6.5 in image
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{perimgrinding <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(grinding, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ elev_max, }\DataTypeTok{y =}\NormalTok{ perimperc, }\DataTypeTok{colour =}\NormalTok{ cycle)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{sample, }\DataTypeTok{scale =} \StringTok{"free"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Slope, grinding"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Peerimeter %"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Slope in º"}\NormalTok{)}
+
+\NormalTok{perimgrinding}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{MechExpGST_files/figure-latex/unnamed-chunk-4-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggsave}\NormalTok{(}\StringTok{"../analysis/plots/slopeperimgrinding.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Saving 8.5 x 6.5 in image
+\end{verbatim}
+
+\hypertarget{tri-terrain-roughness-index}{%
+\subsection{TRI (Terrain roughness
+index)}\label{tri-terrain-roughness-index}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tri <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(gisdata, parameter }\OperatorTok{==}\StringTok{ "tri"}\NormalTok{)}
+\NormalTok{tribefore <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(tri, cycle }\OperatorTok{==}\StringTok{ "before"}\NormalTok{)}
+\NormalTok{triafter <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(tri, cycle }\OperatorTok{==}\StringTok{"after"}\NormalTok{)}
+
+
+\CommentTok{# before experimental cycles (natural surfaces)}
+
+\NormalTok{id2}\FloatTok{.5}\NormalTok{before <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(tribefore, sample }\OperatorTok{==}\StringTok{ "id2-5"}\NormalTok{)}
+\NormalTok{id3}\FloatTok{.3}\NormalTok{before <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(tribefore, sample }\OperatorTok{==}\StringTok{ "id3-3"}\NormalTok{)}
+\NormalTok{id3}\FloatTok{.8}\NormalTok{before <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(tribefore, sample }\OperatorTok{==}\StringTok{ "id3-8"}\NormalTok{)}
+\NormalTok{id3}\FloatTok{.9}\NormalTok{before <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(tribefore, sample }\OperatorTok{==}\StringTok{ "id3-9"}\NormalTok{)}
+\NormalTok{id6}\FloatTok{.1}\NormalTok{before <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(tribefore, sample }\OperatorTok{==}\StringTok{ "id6-1"}\NormalTok{)}
+\NormalTok{id6}\FloatTok{.3}\NormalTok{before <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(tribefore, sample }\OperatorTok{==}\StringTok{ "id6-3"}\NormalTok{)}
+\NormalTok{id6}\FloatTok{.6}\NormalTok{before <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(tribefore, sample }\OperatorTok{==}\StringTok{ "id6-6"}\NormalTok{)}
+\NormalTok{id6}\FloatTok{.7}\NormalTok{before <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(tribefore, sample }\OperatorTok{==}\StringTok{ "id6-7"}\NormalTok{)}
+
+\NormalTok{id2}\FloatTok{.5}\NormalTok{before <-}\StringTok{ }\NormalTok{id2}\FloatTok{.5}\NormalTok{before }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id3}\FloatTok{.3}\NormalTok{before <-}\StringTok{ }\NormalTok{id3}\FloatTok{.3}\NormalTok{before }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id3}\FloatTok{.8}\NormalTok{before <-}\StringTok{ }\NormalTok{id3}\FloatTok{.8}\NormalTok{before }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id3}\FloatTok{.9}\NormalTok{before <-}\StringTok{ }\NormalTok{id3}\FloatTok{.9}\NormalTok{before }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id6}\FloatTok{.1}\NormalTok{before <-}\StringTok{ }\NormalTok{id6}\FloatTok{.1}\NormalTok{before }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id6}\FloatTok{.3}\NormalTok{before <-}\StringTok{ }\NormalTok{id6}\FloatTok{.3}\NormalTok{before }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id6}\FloatTok{.6}\NormalTok{before <-}\StringTok{ }\NormalTok{id6}\FloatTok{.6}\NormalTok{before }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id6}\FloatTok{.7}\NormalTok{before <-}\StringTok{ }\NormalTok{id6}\FloatTok{.7}\NormalTok{before }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+
+\CommentTok{# after experimental cycles}
+
+\NormalTok{id2}\FloatTok{.5}\NormalTok{after <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(triafter, sample }\OperatorTok{==}\StringTok{ "id2-5"}\NormalTok{)}
+\NormalTok{id3}\FloatTok{.3}\NormalTok{after <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(triafter, sample }\OperatorTok{==}\StringTok{ "id3-3"}\NormalTok{)}
+\NormalTok{id3}\FloatTok{.8}\NormalTok{after <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(triafter, sample }\OperatorTok{==}\StringTok{ "id3-8"}\NormalTok{)}
+\NormalTok{id3}\FloatTok{.9}\NormalTok{after <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(triafter, sample }\OperatorTok{==}\StringTok{ "id3-9"}\NormalTok{)}
+\NormalTok{id6}\FloatTok{.1}\NormalTok{after <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(triafter, sample }\OperatorTok{==}\StringTok{ "id6-1"}\NormalTok{)}
+\NormalTok{id6}\FloatTok{.3}\NormalTok{after <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(triafter, sample }\OperatorTok{==}\StringTok{ "id6-3"}\NormalTok{)}
+\NormalTok{id6}\FloatTok{.6}\NormalTok{after <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(triafter, sample }\OperatorTok{==}\StringTok{ "id6-6"}\NormalTok{)}
+\NormalTok{id6}\FloatTok{.7}\NormalTok{after <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(triafter, sample }\OperatorTok{==}\StringTok{ "id6-7"}\NormalTok{)}
+
+\NormalTok{id2}\FloatTok{.5}\NormalTok{after <-}\StringTok{ }\NormalTok{id2}\FloatTok{.5}\NormalTok{after }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id3}\FloatTok{.3}\NormalTok{after <-}\StringTok{ }\NormalTok{id3}\FloatTok{.3}\NormalTok{after }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id3}\FloatTok{.8}\NormalTok{after <-}\StringTok{ }\NormalTok{id3}\FloatTok{.8}\NormalTok{after }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id3}\FloatTok{.9}\NormalTok{after <-}\StringTok{ }\NormalTok{id3}\FloatTok{.9}\NormalTok{after }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id6}\FloatTok{.1}\NormalTok{after <-}\StringTok{ }\NormalTok{id6}\FloatTok{.1}\NormalTok{after }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id6}\FloatTok{.3}\NormalTok{after <-}\StringTok{ }\NormalTok{id6}\FloatTok{.3}\NormalTok{after }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id6}\FloatTok{.6}\NormalTok{after <-}\StringTok{ }\NormalTok{id6}\FloatTok{.6}\NormalTok{after }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+\NormalTok{id6}\FloatTok{.7}\NormalTok{after <-}\StringTok{ }\NormalTok{id6}\FloatTok{.7}\NormalTok{after }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(sample) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{areaperc =}\NormalTok{ area }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(area) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{,}
+    \DataTypeTok{perimperc =}\NormalTok{ perimeter }\OperatorTok{/}\StringTok{ }\KeywordTok{sum}\NormalTok{(perimeter) }\OperatorTok{*}\StringTok{ }\DecValTok{100}\NormalTok{)}
+
+
+\NormalTok{newtri <-}\StringTok{ }\KeywordTok{do.call}\NormalTok{(}\StringTok{"rbind"}\NormalTok{, }\KeywordTok{list}\NormalTok{(id2}\FloatTok{.5}\NormalTok{before, id3}\FloatTok{.3}\NormalTok{before, id3}\FloatTok{.8}\NormalTok{before, id3}\FloatTok{.9}\NormalTok{before, id6}\FloatTok{.1}\NormalTok{before, id6}\FloatTok{.3}\NormalTok{before, id6}\FloatTok{.6}\NormalTok{before, id6}\FloatTok{.7}\NormalTok{before, id2}\FloatTok{.5}\NormalTok{after, id3}\FloatTok{.3}\NormalTok{after, id3}\FloatTok{.8}\NormalTok{after, id3}\FloatTok{.9}\NormalTok{after, id6}\FloatTok{.1}\NormalTok{after, id6}\FloatTok{.3}\NormalTok{after, id6}\FloatTok{.6}\NormalTok{after, id6}\FloatTok{.7}\NormalTok{after))}
+
+\CommentTok{# save output}
+
+\KeywordTok{write_csv}\NormalTok{(newtri,}\StringTok{"../analysis/derived_data/newtri.csv"}\NormalTok{)}
+
+\CommentTok{# Plot data}
+
+\CommentTok{# Area %}
+
+\NormalTok{impactdf <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(newtri, motion }\OperatorTok{==}\StringTok{ "Impact"}\NormalTok{)}
+\NormalTok{grinding <-}\StringTok{ }\KeywordTok{filter}\NormalTok{(newtri, motion }\OperatorTok{==}\StringTok{ "Grinding"}\NormalTok{)}
+
+\NormalTok{areaimpact <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(impactdf, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ elev_max, }\DataTypeTok{y =}\NormalTok{ areaperc, }\DataTypeTok{colour =}\NormalTok{ cycle)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{sample, }\DataTypeTok{scale =} \StringTok{"free"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"TRI analysis, impact"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Area %"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"TRI"}\NormalTok{)}
+
+\NormalTok{areaimpact }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{MechExpGST_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggsave}\NormalTok{(}\StringTok{"../analysis/plots/triareaimpact.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Saving 8.5 x 6.5 in image
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{areagrinding <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(grinding, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ elev_max, }\DataTypeTok{y =}\NormalTok{ areaperc, }\DataTypeTok{colour =}\NormalTok{ cycle)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{sample, }\DataTypeTok{scale =} \StringTok{"free"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"TRI analysis, grinding"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Area %"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"TRI"}\NormalTok{)}
+
+\NormalTok{areagrinding}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{MechExpGST_files/figure-latex/unnamed-chunk-5-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggsave}\NormalTok{(}\StringTok{"../analysis/plots/triareagrinding.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Saving 8.5 x 6.5 in image
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Perimeter %}
+
+\NormalTok{perimimpact <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(impactdf, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ elev_max, }\DataTypeTok{y =}\NormalTok{ perimperc, }\DataTypeTok{colour =}\NormalTok{ cycle)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{sample) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"TRI analysis, impact"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Perimeter %"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"TRI"}\NormalTok{)}
+
+\NormalTok{perimimpact}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{MechExpGST_files/figure-latex/unnamed-chunk-5-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggsave}\NormalTok{(}\StringTok{"../analysis/plots/triperimimpact.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Saving 8.5 x 6.5 in image
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{perimgrinding <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(grinding, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ elev_max, }\DataTypeTok{y =}\NormalTok{ perimperc, }\DataTypeTok{colour =}\NormalTok{ cycle)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{sample, }\DataTypeTok{scale =} \StringTok{"free"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"TRI analysis, grinding"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{"Perimeter %"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"TRI"}\NormalTok{)}
+
+\NormalTok{perimgrinding}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{MechExpGST_files/figure-latex/unnamed-chunk-5-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggsave}\NormalTok{(}\StringTok{"../analysis/plots/triperimgrinding.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Saving 8.5 x 6.5 in image
+\end{verbatim}
+
+\hypertarget{import-summarize-and-plot-all-confocal-data}{%
+\section{Import, summarize and plot all Confocal
+data}\label{import-summarize-and-plot-all-confocal-data}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Compute descriptive statistics}
+
+\CommentTok{# Scatterplot matrix for the ISO 25178 Area scale, Height and volume parameters}
+
+\KeywordTok{data}\NormalTok{(confocaldata, }\DataTypeTok{package =} \StringTok{"reshape"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in data(confocaldata, package = "reshape"): data set 'confocaldata' not
+## found
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggpairs}\NormalTok{(}\DataTypeTok{data=}\NormalTok{confocaldata,}
+        \DataTypeTok{columns =} \KeywordTok{c}\NormalTok{(}\DecValTok{21}\OperatorTok{:}\DecValTok{26}\NormalTok{),}
+        \DataTypeTok{cardinality_threshold =} \DecValTok{30}\NormalTok{,}
+        \DataTypeTok{mapping =}\NormalTok{ ggplot2}\OperatorTok{::}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ workedmaterial, }\DataTypeTok{shape =}\NormalTok{ motion),}
+        \DataTypeTok{lower =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{continuous =} \KeywordTok{wrap}\NormalTok{(}\StringTok{"points"}\NormalTok{, }\DataTypeTok{alpha =} \DecValTok{1}\NormalTok{, }\DataTypeTok{size =} \DecValTok{2}\NormalTok{)),}
+        \DataTypeTok{upper =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{continuous =} \StringTok{"blank"}\NormalTok{),}
+        \DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+\NormalTok{        ) }\OperatorTok{+}
+
+\StringTok{    }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"right"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"Micro polish type"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{MechExpGST_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggsave}\NormalTok{(}\StringTok{"../analysis/plots/confocalarea.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Saving 8.5 x 6.5 in image
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggpairs}\NormalTok{(}\DataTypeTok{data=}\NormalTok{confocaldata,}
+        \DataTypeTok{columns =} \KeywordTok{c}\NormalTok{(}\DecValTok{36}\OperatorTok{:}\DecValTok{41}\NormalTok{),}
+        \DataTypeTok{cardinality_threshold =} \DecValTok{30}\NormalTok{,}
+        \DataTypeTok{mapping =}\NormalTok{ ggplot2}\OperatorTok{::}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ workedmaterial, }\DataTypeTok{shape =}\NormalTok{ motion),}
+        \DataTypeTok{lower =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{continuous =} \KeywordTok{wrap}\NormalTok{(}\StringTok{"points"}\NormalTok{, }\DataTypeTok{alpha =} \DecValTok{1}\NormalTok{, }\DataTypeTok{size =} \DecValTok{2}\NormalTok{)),}
+        \DataTypeTok{upper =} \KeywordTok{list}\NormalTok{(}\DataTypeTok{continuous =} \StringTok{"blank"}\NormalTok{),}
+        \DataTypeTok{legend =} \KeywordTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+\NormalTok{        ) }\OperatorTok{+}
+
+\StringTok{    }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"right"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{fill =} \StringTok{"Micro polish type"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{MechExpGST_files/figure-latex/unnamed-chunk-6-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggsave}\NormalTok{(}\StringTok{"../analysis/plots/confocalvolume.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Saving 8.5 x 6.5 in image
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# compute descriptive statistics}
+
+\NormalTok{nminmaxmeanmedsd <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x)\{}
+\NormalTok{    y <-}\StringTok{ }\NormalTok{x[}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(x)]}
+\NormalTok{    n_test <-}\StringTok{ }\KeywordTok{length}\NormalTok{(y)}
+\NormalTok{    min_test <-}\StringTok{ }\KeywordTok{min}\NormalTok{(y)}
+\NormalTok{    max_test <-}\StringTok{ }\KeywordTok{max}\NormalTok{(y)}
+\NormalTok{    mean_test <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(y)}
+\NormalTok{    med_test <-}\StringTok{ }\KeywordTok{median}\NormalTok{(y)}
+\NormalTok{    sd_test <-}\StringTok{ }\KeywordTok{sd}\NormalTok{(y)}
+\NormalTok{    out <-}\StringTok{ }\KeywordTok{c}\NormalTok{(n_test, min_test, max_test, mean_test, med_test, sd_test)}
+    \KeywordTok{names}\NormalTok{(out) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"n"}\NormalTok{, }\StringTok{"min"}\NormalTok{, }\StringTok{"max"}\NormalTok{, }\StringTok{"mean"}\NormalTok{, }\StringTok{"median"}\NormalTok{, }\StringTok{"sd"}\NormalTok{)}
+    \KeywordTok{return}\NormalTok{(out)}
+\NormalTok{\}}
+
+\NormalTok{positions <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{,}\DecValTok{21}\OperatorTok{:}\DecValTok{27}\NormalTok{,}\DecValTok{36}\OperatorTok{:}\DecValTok{41}\NormalTok{)}
+\NormalTok{df <-}\StringTok{ }\NormalTok{confocaldata }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(positions)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Note: Using an external vector in selections is ambiguous.
+## i Use `all_of(positions)` instead of `positions` to silence this message.
+## i See <https://tidyselect.r-lib.org/reference/faq-external-vector.html>.
+## This message is displayed once per session.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{num.var <-}\StringTok{ }\DecValTok{5}\OperatorTok{:}\KeywordTok{length}\NormalTok{(df)}
+
+\NormalTok{confostats <-}\StringTok{ }\KeywordTok{summaryBy}\NormalTok{(.}\OperatorTok{~}\NormalTok{sample}\OperatorTok{+}\NormalTok{workedmaterial, }\DataTypeTok{data=}\NormalTok{df[}\KeywordTok{c}\NormalTok{(}\StringTok{"sample"}\NormalTok{, }\StringTok{"motion"}\NormalTok{,}\StringTok{"workedmaterial"}\NormalTok{, }\KeywordTok{names}\NormalTok{(df)[num.var])], }\DataTypeTok{FUN=}\NormalTok{nminmaxmeanmedsd)}
+
+\KeywordTok{write_csv}\NormalTok{(confostats, }\StringTok{"../analysis/derived_data/confostats.csv"}\NormalTok{)}
+
+\CommentTok{# Plot confostats for the ISO 25178 Area-scale, Height and volume parameters}
+\CommentTok{# select parameter from datase}
+
+\CommentTok{# firts Height parameters}
+
+\NormalTok{heightconfostats <-}\StringTok{ }\KeywordTok{select}\NormalTok{(confostats,sample,workedmaterial, Sq.mean,Ssk.mean,Sku.mean,Sp.mean,Sv.mean,Sz.mean,Sa.mean)}
+
+\NormalTok{p1 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(heightconfostats, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{workedmaterial, }\DataTypeTok{y=}\NormalTok{Sq.mean, }\DataTypeTok{colour=}\NormalTok{workedmaterial)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x=}\StringTok{""}\NormalTok{, }\DataTypeTok{colour=}\StringTok{"Micro polish"}\NormalTok{)}
+
+\NormalTok{p2 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(heightconfostats, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{workedmaterial, }\DataTypeTok{y=}\NormalTok{Ssk.mean, }\DataTypeTok{colour=}\NormalTok{workedmaterial)) }\OperatorTok{+}\StringTok{   }
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x=}\StringTok{""}\NormalTok{, }\DataTypeTok{colour=}\StringTok{"Micro polish"}\NormalTok{)}
+
+\NormalTok{p3 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(heightconfostats, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{workedmaterial, }\DataTypeTok{y=}\NormalTok{Sku.mean, }\DataTypeTok{colour=}\NormalTok{workedmaterial)) }\OperatorTok{+}\StringTok{   }
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x=}\StringTok{""}\NormalTok{, }\DataTypeTok{colour=}\StringTok{"Micro polish"}\NormalTok{)}
+
+\NormalTok{p4 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(heightconfostats, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{workedmaterial, }\DataTypeTok{y=}\NormalTok{Sp.mean, }\DataTypeTok{colour=}\NormalTok{workedmaterial)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x=}\StringTok{""}\NormalTok{, }\DataTypeTok{colour=}\StringTok{"Micro polish"}\NormalTok{)}
+
+\NormalTok{p5 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(heightconfostats, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{workedmaterial, }\DataTypeTok{y=}\NormalTok{Sv.mean, }\DataTypeTok{colour=}\NormalTok{workedmaterial)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x=}\StringTok{""}\NormalTok{, }\DataTypeTok{colour=}\StringTok{"Micro polish"}\NormalTok{)}
+
+\NormalTok{p6 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(heightconfostats, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{workedmaterial, }\DataTypeTok{y=}\NormalTok{Sz.mean, }\DataTypeTok{colour=}\NormalTok{workedmaterial)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x=}\StringTok{""}\NormalTok{, }\DataTypeTok{colour=}\StringTok{"Micro polish"}\NormalTok{)}
+
+\NormalTok{p7 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(heightconfostats, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{workedmaterial, }\DataTypeTok{y=}\NormalTok{Sa.mean, }\DataTypeTok{colour=}\NormalTok{workedmaterial)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x=}\StringTok{""}\NormalTok{, }\DataTypeTok{colour=}\StringTok{"Micro polish"}\NormalTok{)}
+
+\KeywordTok{ggarrange}\NormalTok{(p1, p2, p3, p4, p5, p6, p7, }\DataTypeTok{ncol =} \DecValTok{3}\NormalTok{, }\DataTypeTok{nrow =} \DecValTok{3}\NormalTok{, }\DataTypeTok{common.legend =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{legend=}\StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{MechExpGST_files/figure-latex/unnamed-chunk-6-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggsave}\NormalTok{(}\StringTok{"../analysis/plots/confostatsarea.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Saving 8.5 x 6.5 in image
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# Now Volume parameters}
+
+\NormalTok{volumeconfostats <-}\StringTok{ }\KeywordTok{select}\NormalTok{(confostats,sample,workedmaterial, Vm.mean,Vv.mean,Vmp.mean,Vmc.mean,Vvc.mean,Vvv.mean)}
+
+\NormalTok{p8 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(volumeconfostats, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{workedmaterial, }\DataTypeTok{y=}\NormalTok{Vm.mean, }\DataTypeTok{colour=}\NormalTok{workedmaterial)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x=}\StringTok{""}\NormalTok{, }\DataTypeTok{colour=}\StringTok{"Micro polish"}\NormalTok{)}
+
+\NormalTok{p9 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(volumeconfostats, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{workedmaterial, }\DataTypeTok{y=}\NormalTok{Vv.mean, }\DataTypeTok{colour=}\NormalTok{workedmaterial)) }\OperatorTok{+}\StringTok{   }
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x=}\StringTok{""}\NormalTok{, }\DataTypeTok{colour=}\StringTok{"Micro polish"}\NormalTok{)}
+
+\NormalTok{p10 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(volumeconfostats, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{workedmaterial, }\DataTypeTok{y=}\NormalTok{Vmp.mean, }\DataTypeTok{colour=}\NormalTok{workedmaterial)) }\OperatorTok{+}\StringTok{   }
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x=}\StringTok{""}\NormalTok{, }\DataTypeTok{colour=}\StringTok{"Micro polish"}\NormalTok{)}
+
+\NormalTok{p11 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(volumeconfostats, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{workedmaterial, }\DataTypeTok{y=}\NormalTok{Vmc.mean, }\DataTypeTok{colour=}\NormalTok{workedmaterial)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x=}\StringTok{""}\NormalTok{, }\DataTypeTok{colour=}\StringTok{"Micro polish"}\NormalTok{)}
+
+\NormalTok{p12 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(volumeconfostats, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{workedmaterial, }\DataTypeTok{y=}\NormalTok{Vvc.mean, }\DataTypeTok{colour=}\NormalTok{workedmaterial)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x=}\StringTok{""}\NormalTok{, }\DataTypeTok{colour=}\StringTok{"Micro polish"}\NormalTok{)}
+
+\NormalTok{p13 <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(volumeconfostats, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{workedmaterial, }\DataTypeTok{y=}\NormalTok{Vvv.mean, }\DataTypeTok{colour=}\NormalTok{workedmaterial)) }\OperatorTok{+}\StringTok{ }
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x=}\StringTok{""}\NormalTok{, }\DataTypeTok{colour=}\StringTok{"Micro polish"}\NormalTok{)}
+
+\KeywordTok{ggarrange}\NormalTok{(p8, p9, p10, p11, p12, p13, }\DataTypeTok{ncol =} \DecValTok{3}\NormalTok{, }\DataTypeTok{nrow =} \DecValTok{3}\NormalTok{, }\DataTypeTok{common.legend =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{legend=}\StringTok{"bottom"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{MechExpGST_files/figure-latex/unnamed-chunk-6-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggsave}\NormalTok{(}\StringTok{"../analysis/plots/confostatvolume.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Saving 8.5 x 6.5 in image
+\end{verbatim}
+
+\hypertarget{end-of-script}{%
+\subsection{End of script}\label{end-of-script}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sessionInfo}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## R version 4.0.2 (2020-06-22)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 18362)
+## 
+## Matrix products: default
+## 
+## locale:
+## [1] LC_COLLATE=English_United Kingdom.1252 
+## [2] LC_CTYPE=English_United Kingdom.1252   
+## [3] LC_MONETARY=English_United Kingdom.1252
+## [4] LC_NUMERIC=C                           
+## [5] LC_TIME=English_United Kingdom.1252    
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] ggfortify_0.4.10 ggpubr_0.4.0     doBy_4.6.7       GGally_2.0.0    
+##  [5] kableExtra_1.2.1 janitor_2.0.1    knitr_1.30       forcats_0.5.0   
+##  [9] stringr_1.4.0    dplyr_1.0.2      purrr_0.3.4      readr_1.3.1     
+## [13] tidyr_1.1.2      tibble_3.0.3     ggplot2_3.3.2    tidyverse_1.3.0 
+## 
+## loaded via a namespace (and not attached):
+##  [1] httr_1.4.2         jsonlite_1.7.1     viridisLite_0.3.0  carData_3.0-4     
+##  [5] modelr_0.1.8       assertthat_0.2.1   blob_1.2.1         cellranger_1.1.0  
+##  [9] yaml_2.2.1         pillar_1.4.6       backports_1.1.10   lattice_0.20-41   
+## [13] glue_1.4.2         digest_0.6.25      RColorBrewer_1.1-2 ggsignif_0.6.0    
+## [17] rvest_0.3.6        snakecase_0.11.0   colorspace_1.4-1   cowplot_1.1.0     
+## [21] htmltools_0.5.0    Matrix_1.2-18      plyr_1.8.6         pkgconfig_2.0.3   
+## [25] broom_0.7.0        haven_2.3.1        scales_1.1.1       webshot_0.5.2     
+## [29] openxlsx_4.2.2     rio_0.5.16         farver_2.0.3       generics_0.0.2    
+## [33] car_3.0-10         ellipsis_0.3.1     withr_2.3.0        cli_2.0.2         
+## [37] magrittr_1.5       crayon_1.3.4       readxl_1.3.1       evaluate_0.14     
+## [41] fs_1.5.0           fansi_0.4.1        MASS_7.3-51.6      rstatix_0.6.0     
+## [45] xml2_1.3.2         foreign_0.8-80     tools_4.0.2        data.table_1.13.0 
+## [49] hms_0.5.3          lifecycle_0.2.0    munsell_0.5.0      reprex_0.3.0      
+## [53] zip_2.1.1          Deriv_4.0.1        compiler_4.0.2     rlang_0.4.7       
+## [57] grid_4.0.2         rstudioapi_0.11    labeling_0.3       rmarkdown_2.4     
+## [61] gtable_0.3.0       abind_1.4-5        DBI_1.1.0          reshape_0.8.8     
+## [65] curl_4.3           R6_2.4.1           gridExtra_2.3      lubridate_1.7.9   
+## [69] stringi_1.5.3      Rcpp_1.0.5         vctrs_0.3.4        dbplyr_1.4.4      
+## [73] tidyselect_1.1.0   xfun_0.17
+\end{verbatim}
+
+\end{document}
