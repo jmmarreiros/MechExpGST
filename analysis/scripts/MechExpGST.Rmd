@@ -39,11 +39,9 @@ Joao Marreiros, marreiros@rgzm.de, or Eduardo Paixao, paixao@rgzm.de
 
 *Tables are saved in: '`r paste0("../analysis/derived_data")`'*
 
-1) Load libraries and datasets
+## Load libraries
 
 ```{r}
-
-# Load required libraries
 
 library(tidyverse)
 library(utils)
@@ -54,13 +52,23 @@ library(GGally)
 library(doBy)
 library(ggpubr)
 library(ggfortify)
-
-# Import datasets
-
-gisdata <- read.csv("../analysis/raw_data/gisdata.csv")
-confocaldata <- read_csv("../analysis/raw_data/confocaldata.csv")
+library(tools)
 
 ```
+
+## Import datasets
+
+```{r}
+
+gisdata <- read_csv("../raw_data/gisdata.csv")
+confocaldata <- read.csv("../raw_data/confocaldata.csv", na.strings = "*****", encoding = "UTF-8")
+
+data_file <- list.files("../raw_data/", pattern = "\\.csv$", full.names = TRUE)
+md5_in <- md5sum(data_file)
+info_in <- data.frame(file = basename(names(md5_in)), checksum = md5_in, row.names = NULL)
+
+```
+
 
 In this study, two datasets are used:
 
@@ -466,13 +474,123 @@ ggsave("../analysis/plots/triperimgrinding.png")
 ```
 
 
-# Import, summarize and plot all Confocal data
+# Confocal data
+
+## Import and summarize data
 
 ```{r fig.height = 6.5, fig.width = 8.5, res = 300}
 
-# Compute descriptive statistics
+# compute descriptive statistics
 
-# Scatterplot matrix for the ISO 25178 Area scale, Height and volume parameters
+nminmaxmeanmedsd <- function(x){
+	y <- x[!is.na(x)]
+	n_test <- length(y)
+	min_test <- min(y)
+	max_test <- max(y)
+	mean_test <- mean(y)
+ 	med_test <- median(y)
+ 	sd_test <- sd(y)
+ 	out <- c(n_test, min_test, max_test, mean_test, med_test, sd_test)
+ 	names(out) <- c("n", "min", "max", "mean", "median", "sd")
+ 	return(out)
+}
+
+num.var <- 21:length(confocaldata)
+
+confostats <- summaryBy(.~sample + motion + workedmaterial, data=confocaldata[c("sample", "motion","workedmaterial", names(confocaldata)[num.var])], FUN=nminmaxmeanmedsd)
+
+write_csv(confostats, "../derived_data/confostats.csv")
+
+```
+
+## Plot all paramaters
+
+```{r}
+
+# Loop for plotting all parmeters
+
+for (i in num.var) cat("[",i,"] ", names(confocaldata)[i], "\n", sep = "")
+	
+for (i in num.var) {
+  p <- ggplot(data = confocaldata, aes_string(x = "workedmaterial", y = names(confocaldata)[i],
+	                                        colour = "motion")) + 
+	     geom_boxplot() +
+	     # geom_line(aes(group = motion)) +
+	     theme_classic() +
+	     labs(colour = "motion") +
+	     # facet_wrap(~ sample) +
+	     labs(x = "material", y = gsub("\\.", " ", names(confocaldata)[i])) +
+	     scale_colour_hue(h = c(25,225), limits = levels(confocaldata[["motion"]]))
+  print(p)
+  
+  # saves the plots 
+  file_out <- paste0(file_path_sans_ext(info_in[["file"]]), "_plot_",
+	                   names(confocaldata)[i], ".pdf")
+	ggsave(filename = file_out, plot = p, path = "../plots", device = "pdf", width = 26,
+	       height = 21, units = "cm" )
+}
+
+```
+
+## Scatterplots of selected variables combined with Sample and Impression (Time)
+
+```{r}
+
+# Sa vs. Sq
+
+Sa_Sq <- ggplot(data = confocaldata) +  
+         geom_point(mapping = aes(x = Sa, y = Sq, colour = workedmaterial)) +
+         theme_classic() +
+         labs(colour = "workedmaterial") +
+         facet_wrap(~ motion) +
+         scale_colour_hue(h = c(25, 230)) 
+print(Sa_Sq)
+file_out <- paste0(file_path_sans_ext(info_in[["file"]]), "_scatterplot_Sa-Sq", ".pdf")
+ggsave(filename = file_out, plot = Sa_Sq, path = dir_out, device = "pdf")
+
+# epLsar vs. Asfc
+
+ep_As <- ggplot(data = imp_data) +  
+         geom_point(mapping = aes(x = Asfc, y = epLsar, colour = Sample)) +
+         theme_classic() +
+         labs(colour = "Sample") +
+         facet_wrap(~ Impression.Time) +
+         scale_colour_hue(h = c(25, 230)) 
+print(ep_As)
+file_out <- paste0(file_path_sans_ext(info_in[["file"]]), "_scatterplot_Asfc-epLsar", ".pdf")
+ggsave(filename = file_out, plot = ep_As, path = dir_out, device = "pdf")
+
+# Sq vs. Vmc
+
+Sq_Vmc <- ggplot(data = imp_data) +  
+          geom_point(mapping = aes(x = Sq, y = Vmc, colour = Sample)) +
+          theme_classic() +
+          labs(colour = "Sample") +
+          facet_wrap(~ Impression.Time) +
+          scale_colour_hue(h = c(25, 230))  
+print(Sq_Vmc)
+file_out <- paste0(file_path_sans_ext(info_in[["file"]]), "_scatterplot_Sq-Vmc", ".pdf")
+ggsave(filename = file_out, plot = Sq_Vmc, path = dir_out, device = "pdf")
+
+# Mean depth of furrows vs. mean density of furrows
+
+furrows <- ggplot(data = imp_data) +  
+           geom_point(mapping = aes(x = Mean.depth.of.furrows, y = Mean.density.of.furrows,
+                                    colour = Sample)) +
+           theme_classic() +
+           labs(colour = "Sample", x = "Mean depth of furrows", y = "Mean density of furrows") +
+           facet_wrap(~ Impression.Time) +
+           scale_colour_hue(h = c(25, 230))
+print(furrows)
+file_out <- paste0(file_path_sans_ext(info_in[["file"]]), "_scatterplot_furrows", ".pdf")
+ggsave(filename = file_out, plot = furrows, path = dir_out, device = "pdf")
+
+```
+
+## Scatterplot matrix for the ISO 25178 Area scale, Height and volume parameters
+
+
+```{r}
 
 data(confocaldata, package = "reshape")
 
@@ -504,35 +622,14 @@ ggpairs(data=confocaldata,
 
 ggsave("../analysis/plots/confocalvolume.png")
 
-# compute descriptive statistics
+```
 
-nminmaxmeanmedsd <- function(x){
-	y <- x[!is.na(x)]
-	n_test <- length(y)
-	min_test <- min(y)
-	max_test <- max(y)
-	mean_test <- mean(y)
- 	med_test <- median(y)
- 	sd_test <- sd(y)
- 	out <- c(n_test, min_test, max_test, mean_test, med_test, sd_test)
- 	names(out) <- c("n", "min", "max", "mean", "median", "sd")
- 	return(out)
-}
+## Plot confostats for the ISO 25178 Area-scale, Height and volume parameters
 
-positions <- c(1:5,21:27,36:41)
-df <- confocaldata %>% 
-  select(positions)
+```{r}
+# select parameter from dataset
 
-num.var <- 5:length(df)
-
-confostats <- summaryBy(.~sample+workedmaterial, data=df[c("sample", "motion","workedmaterial", names(df)[num.var])], FUN=nminmaxmeanmedsd)
-
-write_csv(confostats, "../analysis/derived_data/confostats.csv")
-
-# Plot confostats for the ISO 25178 Area-scale, Height and volume parameters
-# select parameter from datase
-
-# firts Height parameters
+# first Height parameters
 
 heightconfostats <- select(confostats,sample,workedmaterial, Sq.mean,Ssk.mean,Sku.mean,Sp.mean,Sv.mean,Sz.mean,Sa.mean)
 
@@ -600,10 +697,20 @@ ggarrange(p8, p9, p10, p11, p12, p13, ncol = 3, nrow = 3, common.legend = TRUE, 
 
 ggsave("../analysis/plots/confostatvolume.png")
 
-
 ```
 
-## End of script
+# Show plot files information
+```{r}
+info_out <- list.files(path = "derived_data", pattern = "\\.pdf$", full.names = TRUE) %>% 
+            md5sum()
+```
+
+# The checksum (MD5 hashes) of the exported files are:  
+```{r, echo = FALSE}
+info_out
+```
+
+# End of script
 ```{r}
 sessionInfo()
 ```
