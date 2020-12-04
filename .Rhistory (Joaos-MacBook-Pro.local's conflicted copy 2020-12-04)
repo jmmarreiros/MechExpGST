@@ -1,0 +1,512 @@
+gisdata <- read.csv("../analysis/raw_data/gisdata.csv")
+confocaldata <- read_csv("../analysis/raw_data/confocaldata.csv")
+slope <- filter(gisdata, parameter == "slope")
+slopebefore <- filter(slope, cycle == "before")
+slopeafter <-  filter(slope, cycle == "after")
+id2.5before <- filter(slopebefore, sample == "id2-5")
+id3.3before <- filter(slopebefore, sample == "id3-3")
+id3.8before <- filter(slopebefore, sample == "id3-8")
+id3.9before <- filter(slopebefore, sample == "id3-9")
+id6.1before <- filter(slopebefore, sample == "id6-1")
+id6.3before <- filter(slopebefore, sample == "id6-3")
+id6.6before <- filter(slopebefore, sample == "id6-6")
+id6.7before <- filter(slopebefore, sample == "id6-7")
+id2.5before <- id2.5before %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id3.3before <- id3.3before %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id3.8before <- id3.8before %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id3.9before <- id3.9before %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.1before <- id6.1before %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.3before <- id6.3before %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.6before <- id6.6before %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.7before <- id6.7before %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+# afetr experimental cycles
+id2.5after <- filter(slopeafter, sample == "id2-5")
+id3.3after <- filter(slopeafter, sample == "id3-3")
+id3.8after <- filter(slopeafter, sample == "id3-8")
+id3.9after <- filter(slopeafter, sample == "id3-9")
+id6.1after <- filter(slopeafter, sample == "id6-1")
+id6.3after <- filter(slopeafter, sample == "id6-3")
+id6.6after <- filter(slopeafter, sample == "id6-6")
+id6.7after <- filter(slopeafter, sample == "id6-7")
+id2.5after <- id2.5after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id3.3after <- id3.3after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id3.8after <- id3.8after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id3.9after <- id3.9after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.1after <- id6.1after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.3after <- id6.3after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.6after <- id6.6after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.7after <- id6.7after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+newslope <- do.call("rbind", list(id2.5before, id3.3before, id3.8before, id3.9before, id6.1before, id6.3before, id6.6before, id6.7before, id2.5after, id3.3after, id3.8after, id3.9after, id6.1after, id6.3after, id6.6after, id6.7after))
+# save output
+write_csv(newslope,"../analysis/derived_data/newslope.csv")
+newslope
+id2.6after
+id2.5after
+griding <- filter(newslope, motion == "Grinding")
+grinding
+grinding <- filter(newslope, motion == "Grinding")
+view(griding)
+areaP <- ggplot(grinding, aes(x = elev_max, y = areaperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ylab("Percentage of area") +
+xlab("Slope in º")
+print(areaP)
+impact <- filter(newslope, motion == "Impact")
+grinding <- filter(newslope, motion == "Grinding")
+impact <- filter(newslope, motion == "Impact")
+areaimpact <- ggplot(impact, aes(x = elev_max, y = areaperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ylab("Percentage of area") +
+xlab("Slope in º")
+ggsave("../analysis/plots/slopeareaimpact.png")
+areagrinding <- ggplot(grinding, aes(x = elev_max, y = areaperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ylab("Percentage of area") +
+xlab("Slope in º")
+ggsave("../analysis/plots/slopeareagrinding.png")
+tri <- filter(gisdata, parameter == "tri")
+tribefore <- filter(tri, cycle == "before")
+triafter <- filter(tri, cycle =="after")
+id2.5after <- filter(triafter, sample == "id2-5")
+id3.3after <- filter(triafter, sample == "id3-3")
+id3.8after <- filter(triafter, sample == "id3-8")
+id3.9after <- filter(triafter, sample == "id3-9")
+id6.1after <- filter(triafter, sample == "id6-1")
+id6.3after <- filter(triafter, sample == "id6-3")
+id6.6after <- filter(triafter, sample == "id6-6")
+id6.7after <- filter(triafter, sample == "id6-7")
+id2.5after <- id2.5after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id3.3after <- id3.3after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id3.8after <- id3.8after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id3.9after <- id3.9after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.1after <- id6.1after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.3after <- id6.3after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.6after <- id6.6after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.7after <- id6.7after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+newtri <- do.call("rbind", list(id2.5before, id3.3before, id3.8before, id3.9before, id6.1before, id6.3before, id6.6before, id6.7before, id2.5after, id3.3after, id3.8after, id3.9after, id6.1after, id6.3after, id6.6after, id6.7after))
+# save output
+write_csv(newtri,"../analysis/derived_data/newtri.csv")
+areaimpact <- ggplot(newtri, aes(x = elev_max, y = areaperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ylab("Percentage of area") +
+xlab("TRI")
+areaP
+ggsave("../analysis/plots/triareaimpact.png")
+areagrinding <- ggplot(newtri, aes(x = elev_max, y = areaperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ylab("Percentage of area") +
+xlab("TRI")
+areaP
+ggsave("../analysis/plots/triareagrinding.png")
+areaimpact <- ggplot(newtri, aes(x = elev_max, y = perimprc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ylab("Percentage of area") +
+xlab("TRI")
+ggsave("../analysis/plots/triperimimpact.png")
+areaimpact <- ggplot(newtri, aes(x = elev_max, y = perimperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ylab("Percentage of area") +
+xlab("TRI")
+ggsave("../analysis/plots/triperimimpact.png")
+areagrinding <- ggplot(newtri, aes(x = elev_max, y = perimperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ylab("Percentage of area") +
+xlab("TRI")
+ggsave("../analysis/plots/triperimgrinding.png")
+areaimpact <- ggplot(newtri, aes(x = elev_max, y = perimperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample) +
+ylab("Percentage of area") +
+xlab("TRI")
+ggsave("../analysis/plots/triperimimpact.png")
+perimimpact <- ggplot(newslope, aes(x = elev_max, y = perimperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample) +
+ylab("Percentage of area") +
+xlab("TRI")
+ggsave("../analysis/plots/slopeperimimpact.png")
+perimgrinding <- ggplot(newslope, aes(x = elev_max, y = perimperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ylab("Percentage of area") +
+xlab("TRI")
+ggsave("../analysis/plots/slopeperimgrinding.png")
+impactdf <- filter(newtri, motion == "impact")
+impactdf <- filter(newtri, motion == "impact")
+areaimpact <- ggplot(impactdf, aes(x = elev_max, y = areaperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ylab("Percentage of area") +
+xlab("TRI")
+ggsave("../analysis/plots/triareaimpact.png")
+areaimpact <- ggplot(impactdf, aes(x = elev_max, y = areaperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ylab("Percentage of area") +
+xlab("TRI")
+ggsave("../analysis/plots/triareaimpact.png")
+areaimpact <- ggplot(impactdf, aes(x = elev_max, y = areaperc, colour = cycle)) +
+geom_line() +
+ylab("Percentage of area") +
+xlab("TRI")
+areaimpact
+view(newtri)
+impactdf <- filter(newtri, motion == "Impact")
+areaimpact <- ggplot(impactdf, aes(x = elev_max, y = areaperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ylab("Percentage of area") +
+xlab("TRI")
+ggsave("../analysis/plots/triareaimpact.png")
+areagrinding <- ggplot(impactdf, aes(x = elev_max, y = areaperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ylab("Percentage of area") +
+xlab("TRI")
+ggsave("../analysis/plots/triareagrinding.png")
+areaimpact <- ggplot(impactdf, aes(x = elev_max, y = perimperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample) +
+ylab("Percentage of area") +
+xlab("TRI")
+ggsave("../analysis/plots/triperimimpact.png")
+areagrinding <- ggplot(impactdf, aes(x = elev_max, y = perimperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ylab("Percentage of area") +
+xlab("TRI")
+ggsave("../analysis/plots/triperimgrinding.png")
+perimimpact <- ggplot(impactdf, aes(x = elev_max, y = perimperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample) +
+ylab("Percentage of area") +
+xlab("TRI")
+ggsave("../analysis/plots/triperimimpact.png")
+perimgrinding <- ggplot(impactdf, aes(x = elev_max, y = perimperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ylab("Percentage of area") +
+xlab("TRI")
+ggsave("../analysis/plots/triperimgrinding.png")
+impactdf <- filter(newtri, motion == "Impact")
+grinding <- filter(newtri, motion == "Grinding")
+areaimpact <- ggplot(impactdf, aes(x = elev_max, y = areaperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ylab("Percentage of area") +
+xlab("TRI")
+ggsave("../analysis/plots/triareaimpact.png")
+areagrinding <- ggplot(grinding, aes(x = elev_max, y = areaperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ylab("Percentage of area") +
+xlab("TRI")
+ggsave("../analysis/plots/triareagrinding.png")
+# perimeter
+perimimpact <- ggplot(impactdf, aes(x = elev_max, y = perimperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample) +
+ylab("Perimeter") +
+xlab("TRI")
+ggsave("../analysis/plots/triperimimpact.png")
+perimgrinding <- ggplot(grinding, aes(x = elev_max, y = perimperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ylab("Perimeter") +
+xlab("TRI")
+ggsave("../analysis/plots/triperimgrinding.png")
+impactdf <- filter(newslope, motion == "Impact")
+grinding <- filter(newslope, motion == "Grinding")
+areaimpact <- ggplot(impactdf, aes(x = elev_max, y = areaperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ylab("Percentage of area") +
+xlab("Slope in º")
+ggsave("../analysis/plots/slopeareaimpact.png")
+areagrinding <- ggplot(grinding, aes(x = elev_max, y = areaperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ylab("Percentage of area") +
+xlab("Slope in º")
+ggsave("../analysis/plots/slopeareagrinding.png")
+# perimeter
+perimimpact <- ggplot(impactdf, aes(x = elev_max, y = perimperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample) +
+ylab("Percentage of area") +
+xlab("TRI")
+ggsave("../analysis/plots/slopeperimimpact.png")
+perimgrinding <- ggplot(grinding, aes(x = elev_max, y = perimperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ylab("Percentage of area") +
+xlab("TRI")
+ggsave("../analysis/plots/slopeperimgrinding.png")
+impactdf <- filter(newslope, motion == "Impact")
+grinding <- filter(newslope, motion == "Grinding")
+areaimpact <- ggplot(impactdf, aes(x = elev_max, y = areaperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ggtitle("Slope, impact") +
+ylab("Percentage of area") +
+xlab("Slope in º")
+ggsave("../analysis/plots/slopeareaimpact.png")
+areagrinding <- ggplot(grinding, aes(x = elev_max, y = areaperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ggtitle("Slope, grinding") +
+ylab("Percentage of area") +
+xlab("Slope in º")
+ggsave("../analysis/plots/slopeareagrinding.png")
+# perimeter
+perimimpact <- ggplot(impactdf, aes(x = elev_max, y = perimperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample) +
+ggtitle("Slope, impact") +
+ylab("Percentage of area") +
+xlab("TRI")
+ggsave("../analysis/plots/slopeperimimpact.png")
+perimgrinding <- ggplot(grinding, aes(x = elev_max, y = perimperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ggtitle("Slope, grinding") +
+ylab("Percentage of area") +
+xlab("TRI")
+ggsave("../analysis/plots/slopeperimgrinding.png")
+impactdf <- filter(newtri, motion == "Impact")
+grinding <- filter(newtri, motion == "Grinding")
+areaimpact <- ggplot(impactdf, aes(x = elev_max, y = areaperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ggtitle("TRI, impact") +
+ylab("Percentage of area") +
+xlab("TRI")
+ggsave("../analysis/plots/triareaimpact.png")
+areagrinding <- ggplot(grinding, aes(x = elev_max, y = areaperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ggtitle("TRI, grinding") +
+ylab("Percentage of area") +
+xlab("TRI")
+ggsave("../analysis/plots/triareagrinding.png")
+# perimeter
+perimimpact <- ggplot(impactdf, aes(x = elev_max, y = perimperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample) +
+ggtitle("TRI, impact") +
+ylab("Perimeter") +
+xlab("TRI")
+ggsave("../analysis/plots/triperimimpact.png")
+perimgrinding <- ggplot(grinding, aes(x = elev_max, y = perimperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ggtitle("TRI, grinding") +
+ylab("Perimeter") +
+xlab("TRI")
+ggsave("../analysis/plots/triperimgrinding.png")
+library(readr)
+confocaldata <- read_csv("analysis/raw_data/confocaldata.csv")
+View(confocaldata)
+knitr::opts_knit$set(root.dir = "../", comment = NA, message = FALSE, indent = "", error = TRUE)
+# Load required libraries
+library(tidyverse)
+# Load required libraries
+library(tidyverse)
+library(utils)
+library(knitr)
+library(janitor)
+library(kableExtra)
+library(tidyverse)
+library(utils)
+library(knitr)
+library(janitor)
+library(kableExtra)
+library(GGally)
+library(doBy)
+library(ggpubr)
+library(ggfortify)
+nminmaxmeanmedsd <- function(x){
+y <- x[!is.na(x)]
+n_test <- length(y)
+min_test <- min(y)
+max_test <- max(y)
+mean_test <- mean(y)
+med_test <- median(y)
+sd_test <- sd(y)
+out <- c(n_test, min_test, max_test, mean_test, med_test, sd_test)
+names(out) <- c("n", "min", "max", "mean", "median", "sd")
+return(out)
+}
+positions <- c(1:5,21:27,36:50)
+df <- confocaldata %>%
+select(positions)
+positions <- c(1:5,21:27,36:50)
+positions
+df <- confocaldata %>%
+select(positions)
+df
+df <- confocaldata %>%
+select(positions)
+knitr::opts_knit$set(root.dir = "../", comment = NA, message = FALSE, indent = "", error = TRUE)
+# Load required libraries
+library(tidyverse)
+library(utils)
+library(knitr)
+library(janitor)
+library(kableExtra)
+library(GGally)
+library(doBy)
+library(ggpubr)
+library(ggfortify)
+# Import datasets
+gisdata <- read.csv("../analysis/raw_data/gisdata.csv")
+gisdata <- read.csv("../analysis/raw_data/gisdata.csv")
+confocaldata <- read_csv("../analysis/raw_data/confocaldata.csv")
+knitr::opts_knit$set(root.dir = "../", comment = NA, message = FALSE, indent = "", error = TRUE)
+# Load required libraries
+library(tidyverse)
+library(utils)
+library(knitr)
+library(janitor)
+library(kableExtra)
+library(GGally)
+library(doBy)
+library(ggpubr)
+library(ggfortify)
+# Import datasets
+gisdata <- read.csv("../analysis/raw_data/gisdata.csv")
+knitr::opts_knit$set(root.dir = "../", comment = NA, message = FALSE, indent = "", error = TRUE)
+getwd(
+getwd()
+getwd()
+gisdata <- read.csv("../analysis/raw_data/gisdata.csv")
+confocaldata <- read_csv("../analysis/raw_data/confocaldata.csv")
+gisdata <- read.csv("../analysis/raw_data/gisdata.csv")
+confocaldata <- read_csv("../analysis/raw_data/confocaldata.csv")
+confocaldata <- read_csv(".../analysis/raw_data/confocaldata.csv")
+"../analysis(raw_data"
+"../analysis/raw_data"
+analysis
+gisdata <- read.csv("analysis/raw_data/gisdata.csv")
+confocaldata <- read_csv("../analysis/raw_data/confocaldata.csv")
+gisdata <- read.csv("../analysis/raw_data/gisdata.csv")
+dir_in <- "analysis/raw_data/"
+dir_in
+gisdata <- read.csv("../analysis/raw_data/gisdata.csv/")
+gisdata <- read.csv("analysis/raw_data/gisdata.csv")
+confocaldata <- read_csv("../analysis/raw_data/confocaldata.csv")
+gisdata
+gisdata <- read_delim("../analysis/raw_data/gisdata.csv")
+gisdata <- read_csv("../analysis/raw_data/gisdata.csv")
+gisdata <- read.csv("../analysis/raw_data/gisdata.csv")
+gisdata <- read.csv("../analysis/raw_data/gisdata.csv")
+confocal <- "../analysis/raw_data/gisdata.csv
+confocal <- "../analysis/raw_data/gisdata.csv"
+´confocal
+confocal
+confocaldata <- read_csv(confocal)
+getwd()
