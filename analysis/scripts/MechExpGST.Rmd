@@ -1,11 +1,10 @@
 ---
-title: "SOM - Read and plot data from the manuscript Paixao et al."
-author: 'Paixao et al. Using Mechanical experiments to study Ground Stone Tool use:
-  exploring the formation of percussive and grinding wear traces on Limestone tools '
+title: "SOM - Read and data plotting from the manuscript Paixao et al. 2021 - JASr"
+author: "Paixão et al.2021 - JARs"
 date: "28/09/2020"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -15,21 +14,23 @@ knitr::opts_knit$set(root.dir = "../", comment = NA, message = FALSE, indent = "
 
 __Brief description of the script__
 
-This R markdown document reads, summarizes and plots data for the manuscript Paixao et al.
+This R markdown document reads, summarizes and plots data for the manuscript *Paixão et al. 2021 Using Mechanical experiments to study Ground Stone Tool use: exploring the formation of percussive and grinding wear traces on Limestone tools. Journal of Archaeological Science: Reports*
+
+
 The document contains:
 
 1. Manuscript tables
-2. Manuscript figures (data plots)
-3. Supplementary material, including extra tables and figures (data plots)
+2. Manuscript figures (data analysis)
+3. Supplementary material, including extra tables and figures (data analysis)
 
-This R project and respective script follows the procedures described by Marwick et al. 2017. 
+This R project and respective scripts follow the procedures described by Marwick et al. 2017. 
 
 To compile this markdown document do not delete or move files from their original folders.
-Please note that the tables and figures in this file do not match the numbering in the original manuscript.
+Please note that most of the tables and figures in this file do not match the numbering in the original manuscript.
 
 For any questions, comments and inputs, please contact:
 
-Joao Marreiros, marreiros@rgzm.de, or Eduardo Paixao, paixao@rgzm.de
+João Marreiros, marreiros@rgzm.de, or Eduardo Paixão, paixao@rgzm.de
 
 # Load data into R project
 
@@ -70,7 +71,7 @@ info_in <- data.frame(file = basename(names(md5_in)), checksum = md5_in, row.nam
 ```
 
 
-In this study, two datasets are used:
+In this study two datasets are used:
 
 1) __gisdata.csv__: dataset for the QGIS analysis
 ```{r}
@@ -79,7 +80,7 @@ str(gisdata)
 
 ```
 
-2) __confocaldata.csv__: dataset for the Confocal microscopy surface texture analysis
+2) __confocaldata.csv__: dataset for the Confocal microscopy surface texture analysis analysis
 ```{r}
 
 str(confocaldata)
@@ -88,18 +89,18 @@ str(confocaldata)
 
 \newpage
 
-# GIS analysis, Terrain analysis for Slope and TRI
+# GIS analysis, Terrain analysis for Slope and TRI based on the 3D surface point clouds
 ## Slope
 
 ```{r fig.height = 6.5, fig.width = 8.5, res = 300}
 
-# Compute proportions for perimeter and area grouped by sample and parameter
+# Compute proportions for perimeter and area grouped by sample and GIS parameter
 
 slope <- filter(gisdata, parameter == "slope")
 slopebefore <- filter(slope, cycle == "before")
 slopeafter <-  filter(slope, cycle == "after")
 
-# before experimental cycles (natural surfaces)
+# before experimental cycles (i.e. natural surfaces)
 
 id2.5before <- filter(slopebefore, sample == "id2-5")
 id3.3before <- filter(slopebefore, sample == "id3-3")
@@ -220,7 +221,7 @@ id6.7after <- id6.7after %>%
 
 newslope <- do.call("rbind", list(id2.5before, id3.3before, id3.8before, id3.9before, id6.1before, id6.3before, id6.6before, id6.7before, id2.5after, id3.3after, id3.8after, id3.9after, id6.1after, id6.3after, id6.6after, id6.7after))
 
-# save output
+# save outputs
 
 write_csv(newslope,"../derived_data/newslope.csv")
 
@@ -291,7 +292,7 @@ tribefore <- filter(tri, cycle == "before")
 triafter <- filter(tri, cycle =="after")
 
 
-# before experimental cycles (natural surfaces)
+# before experimental cycles (i.e. natural surfaces)
 
 id2.5before <- filter(tribefore, sample == "id2-5")
 id3.3before <- filter(tribefore, sample == "id3-3")
@@ -413,7 +414,7 @@ id6.7after <- id6.7after %>%
 
 newtri <- do.call("rbind", list(id2.5before, id3.3before, id3.8before, id3.9before, id6.1before, id6.3before, id6.6before, id6.7before, id2.5after, id3.3after, id3.8after, id3.9after, id6.1after, id6.3after, id6.6after, id6.7after))
 
-# save output
+# save outputs
 
 write_csv(newtri,"../derived_data/newtri.csv")
 
@@ -474,7 +475,7 @@ ggsave("../plots/triperimgrinding.png")
 ```
 
 
-# Confocal data
+# Confocal micro surface texture data
 
 ## Import and summarize data
 
@@ -507,7 +508,7 @@ write_csv(confostats, "../derived_data/confostats.csv")
 
 ```{r}
 
-# Loop for plotting all parmeters
+# Loop for plotting all surface texture parameters
 
 for (i in num.var) cat("[",i,"] ", names(confocaldata)[i], "\n", sep = "")
 	
@@ -532,7 +533,7 @@ for (i in num.var) {
 
 ```
 
-## Scatterplots of selected variables combined with Sample and Impression (Time)
+## Scatterplots of selected variables combined by Worked material and Motion
 
 ```{r}
 
