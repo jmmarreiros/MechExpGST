@@ -3,12 +3,12 @@ title: "SOM - Read and data plotting from the manuscript Paixao et al. 2021 - JA
 author: "Paixão et al.2021 - JARs"
 date: "28/09/2020"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_knit$set(root.dir = "../", comment = NA, message = FALSE, indent = "", error = TRUE)
+knitr::opts_knit$set(comment = NA, message = FALSE, indent = "", error = TRUE)
 
 ```
 
@@ -227,6 +227,31 @@ write_csv(newslope,"../derived_data/newslope.csv")
 
 # Plot data
 
+# Number of parts
+
+impactdf <- filter(newslope, motion == "Impact")
+grinding <- filter(newslope, motion == "Grinding")
+
+slopepartsexp_impac <- ggplot(impactdf, aes(x = elev_max, y = nparts, colour = cycle)) +
+  geom_line(aes(linetype = material)) +
+  facet_wrap(~sample, scale = "free") +
+  ggtitle("Slope impact experiment, number of parts") +
+    ylab("Number of parts") +
+  xlab("Elevation")
+
+slopepartsexp_impac
+ggsave("../plots/slopepartsexp_impac.png")
+
+slopepartsexp_grind <- ggplot(grinding, aes(x = elev_max, y = nparts, colour = cycle)) +
+  geom_line(aes(linetype = material)) +
+  facet_wrap(~sample, scale = "free") +
+  ggtitle("Slope grinding experiment, number of parts") +
+    ylab("Number of parts") +
+  xlab("Elevation")
+
+slopepartsexp_grind
+ggsave("../plots/slopepartsexp_grind.png")
+
 # Area %
 
 impactdf <- filter(newslope, motion == "Impact")
@@ -234,7 +259,7 @@ grinding <- filter(newslope, motion == "Grinding")
 
 
 areaimpact <- ggplot(impactdf, aes(x = elev_max, y = areaperc, colour = cycle)) +
-  geom_line() +
+  geom_line(aes(linetype = material)) +
   facet_wrap(~sample, scale = "free") +
   ggtitle("Slope analysis, impact") +
   ylab("Area %") +
@@ -246,7 +271,7 @@ ggsave("../plots/slopeareaimpact.png")
 
 
 areagrinding <- ggplot(grinding, aes(x = elev_max, y = areaperc, colour = cycle)) +
-  geom_line() +
+  geom_line(aes(linetype = material)) +
   facet_wrap(~sample, scale = "free") +
   ggtitle("Slope analysis, grinding") +
   ylab("Area %") +
@@ -259,7 +284,7 @@ ggsave("../plots/slopeareagrinding.png")
 # Perimeter %
 
 perimimpact <- ggplot(impactdf, aes(x = elev_max, y = perimperc, colour = cycle)) +
-  geom_line() +
+  geom_line(aes(linetype = material)) +
   facet_wrap(~sample) +
   ggtitle("Slope, impact") +
   ylab("Perimeter %") +
@@ -270,7 +295,7 @@ perimimpact
 ggsave("../plots/slopeperimimpact.png")
 
 perimgrinding <- ggplot(grinding, aes(x = elev_max, y = perimperc, colour = cycle)) +
-  geom_line() +
+  geom_line(aes(linetype = material)) +
   facet_wrap(~sample, scale = "free") +
   ggtitle("Slope, grinding") +
   ylab("Peerimeter %") +
@@ -420,13 +445,37 @@ write_csv(newtri,"../derived_data/newtri.csv")
 
 # Plot data
 
-# Area %
+# Number of parts
 
+# Motion
 impactdf <- filter(newtri, motion == "Impact")
 grinding <- filter(newtri, motion == "Grinding")
 
+imapact_parts <- ggplot(impactdf, aes(x = elev_max, y = nparts, colour = cycle)) +
+  geom_line(aes(linetype = material)) +
+  facet_wrap(~sample, scale = "free") +
+  ggtitle("TRI impact experiment, number of parts") +
+    ylab("Number of parts") +
+  xlab("Elevation")
+
+imapact_parts
+ggsave("../plots/tripartsexp_impac.png")
+
+grinding_parts <- ggplot(grinding, aes(x = elev_max, y = nparts, colour = cycle)) +
+  geom_line(aes(linetype = material)) +
+  facet_wrap(~sample, scale = "free") +
+  ggtitle("TRI grinding experiment, number of parts") +
+    ylab("Number of parts") +
+  xlab("Elevation")
+
+grinding_parts
+ggsave("../plots/tripartsexp_grind.png")
+
+
+# Area %
+
 areaimpact <- ggplot(impactdf, aes(x = elev_max, y = areaperc, colour = cycle)) +
-  geom_line() +
+  geom_line(aes(linetype = material)) +
   facet_wrap(~sample, scale = "free") +
   ggtitle("TRI analysis, impact") +
   ylab("Area %") +
@@ -437,7 +486,7 @@ areaimpact
 ggsave("../plots/triareaimpact.png")
 
 areagrinding <- ggplot(grinding, aes(x = elev_max, y = areaperc, colour = cycle)) +
-  geom_line() +
+  geom_line(aes(linetype = material)) +
   facet_wrap(~sample, scale = "free") +
   ggtitle("TRI analysis, grinding") +
   ylab("Area %") +
@@ -450,7 +499,7 @@ ggsave("../plots/triareagrinding.png")
 # Perimeter %
 
 perimimpact <- ggplot(impactdf, aes(x = elev_max, y = perimperc, colour = cycle)) +
-  geom_line() +
+  geom_line(aes(linetype = material)) +
   facet_wrap(~sample) +
   ggtitle("TRI analysis, impact") +
   ylab("Perimeter %") +
@@ -461,7 +510,7 @@ perimimpact
 ggsave("../plots/triperimimpact.png")
 
 perimgrinding <- ggplot(grinding, aes(x = elev_max, y = perimperc, colour = cycle)) +
-  geom_line() +
+  geom_line(aes(linetype = material)) +
   facet_wrap(~sample, scale = "free") +
   ggtitle("TRI analysis, grinding") +
   ylab("Perimeter %") +
@@ -476,6 +525,7 @@ ggsave("../plots/triperimgrinding.png")
 
 
 # Confocal micro surface texture data
+
 
 ## Import and summarize data
 
@@ -498,9 +548,9 @@ nminmaxmeanmedsd <- function(x){
 
 num.var <- 21:length(confocaldata)
 
-confostats <- summaryBy(.~sample + motion + workedmaterial, data=confocaldata[c("sample", "motion","workedmaterial", names(confocaldata)[num.var])], FUN=nminmaxmeanmedsd)
+confostatsexp <- summaryBy(.~sample + motion + workedmaterial, data=confocaldata[c("sample", "motion","workedmaterial", names(confocaldata)[num.var])], FUN=nminmaxmeanmedsd)
 
-write_csv(confostats, "../derived_data/confostats.csv")
+write_csv(confostatsexp, "../derived_data/confostats.csv")
 
 ```
 
@@ -533,7 +583,7 @@ for (i in num.var) {
 
 ```
 
-## Scatterplots of selected variables combined by Worked material and Motion
+## Scatterplots of selected variables combined by "Worked material" and "Motion"
 
 ```{r}
 
@@ -590,7 +640,7 @@ ggsave(filename = file_out, plot = furrows, path = "../plots", device = "pdf")
 
 ggarrange(Sa_Sq, Sq_Vmc, furrows, ep_As, common.legend = TRUE, legend = "bottom")
 
-ggsave("../plots/scatterplots.png")
+ggsave("../plots/confocalscatterplotsexp.png")
 
 ```
 
@@ -603,10 +653,10 @@ data(confocaldata, package = "reshape")
 # Height parameters
 
 ggpairs(data=confocaldata,
-        columns = c(21:26),
+        columns = c(21:27),
         cardinality_threshold = 30,
         mapping = ggplot2::aes(color = workedmaterial, shape = motion),
-        lower = list(continuous = wrap("points", alpha = 1, size = 2)),
+        lower = list(continuous = wrap("points", alpha = 0.5, size = 1)),
         upper = list(continuous = "blank"),
         legend = c(2,1)
         ) +
@@ -622,7 +672,7 @@ ggpairs(data=confocaldata,
         columns = c(36:41),
         cardinality_threshold = 30,
         mapping = ggplot2::aes(color = workedmaterial, shape = motion),
-        lower = list(continuous = wrap("points", alpha = 1, size = 2)),
+        lower = list(continuous = wrap("points", alpha = 0.5, size = 1)),
         upper = list(continuous = "blank"),
         legend = c(2,1)
         ) +
@@ -641,33 +691,33 @@ ggsave("../plots/confocalvolume_matrix.png")
 
 # first Height parameters
 
-heightconfostats <- select(confostats,sample,workedmaterial, Sq.mean,Ssk.mean,Sku.mean,Sp.mean,Sv.mean,Sz.mean,Sa.mean)
+heightconfostatsexp <- select(confostatsexp,sample,workedmaterial, Sq.mean,Ssk.mean,Sku.mean,Sp.mean,Sv.mean,Sz.mean,Sa.mean)
 
-p1 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Sq.mean, colour=workedmaterial)) + 
+p1 <- ggplot(heightconfostatsexp, aes(x=workedmaterial, y=Sq.mean, colour=workedmaterial)) + 
   geom_boxplot() +
   labs(x="", colour="Micro polish")
 
-p2 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Ssk.mean, colour=workedmaterial)) +   
+p2 <- ggplot(heightconfostatsexp, aes(x=workedmaterial, y=Ssk.mean, colour=workedmaterial)) +   
   geom_boxplot() +
   labs(x="", colour="Micro polish")
 
-p3 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Sku.mean, colour=workedmaterial)) +   
+p3 <- ggplot(heightconfostatsexp, aes(x=workedmaterial, y=Sku.mean, colour=workedmaterial)) +   
   geom_boxplot() +
   labs(x="", colour="Micro polish")
 
-p4 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Sp.mean, colour=workedmaterial)) + 
+p4 <- ggplot(heightconfostatsexp, aes(x=workedmaterial, y=Sp.mean, colour=workedmaterial)) + 
   geom_boxplot() +
   labs(x="", colour="Micro polish")
 
-p5 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Sv.mean, colour=workedmaterial)) + 
+p5 <- ggplot(heightconfostatsexp, aes(x=workedmaterial, y=Sv.mean, colour=workedmaterial)) + 
   geom_boxplot() +
   labs(x="", colour="Micro polish")
 
-p6 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Sz.mean, colour=workedmaterial)) + 
+p6 <- ggplot(heightconfostatsexp, aes(x=workedmaterial, y=Sz.mean, colour=workedmaterial)) + 
   geom_boxplot() +
   labs(x="", colour="Micro polish")
 
-p7 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Sa.mean, colour=workedmaterial)) + 
+p7 <- ggplot(heightconfostatsexp, aes(x=workedmaterial, y=Sa.mean, colour=workedmaterial)) + 
   geom_boxplot() +
   labs(x="", colour="Micro polish")
 
@@ -675,37 +725,37 @@ ggarrange(p1, p2, p3, p4, p5, p6, p7, common.legend = TRUE, font.label = list(si
 
 ggsave("../plots/confostatsarea_boxplots.png")
 
-# Now Volume parameters
+# Now, compute Volume parameters
 
-volumeconfostats <- select(confostats,sample,workedmaterial, Vm.mean,Vv.mean,Vmp.mean,Vmc.mean,Vvc.mean,Vvv.mean)
+volumeconfostatsexp <- select(confostatsexp,sample,workedmaterial, Vm.mean,Vv.mean,Vmp.mean,Vmc.mean,Vvc.mean,Vvv.mean)
 
-p8 <- ggplot(volumeconfostats, aes(x=workedmaterial, y=Vm.mean, colour=workedmaterial)) + 
+p8 <- ggplot(volumeconfostatsexp, aes(x=workedmaterial, y=Vm.mean, colour=workedmaterial)) + 
   geom_boxplot() +
   labs(x="", colour="Micro polish")
 
-p9 <- ggplot(volumeconfostats, aes(x=workedmaterial, y=Vv.mean, colour=workedmaterial)) +   
+p9 <- ggplot(volumeconfostatsexp, aes(x=workedmaterial, y=Vv.mean, colour=workedmaterial)) +   
   geom_boxplot() +
   labs(x="", colour="Micro polish")
 
-p10 <- ggplot(volumeconfostats, aes(x=workedmaterial, y=Vmp.mean, colour=workedmaterial)) +   
+p10 <- ggplot(volumeconfostatsexp, aes(x=workedmaterial, y=Vmp.mean, colour=workedmaterial)) +   
   geom_boxplot() +
   labs(x="", colour="Micro polish")
 
-p11 <- ggplot(volumeconfostats, aes(x=workedmaterial, y=Vmc.mean, colour=workedmaterial)) + 
+p11 <- ggplot(volumeconfostatsexp, aes(x=workedmaterial, y=Vmc.mean, colour=workedmaterial)) + 
   geom_boxplot() +
   labs(x="", colour="Micro polish")
 
-p12 <- ggplot(volumeconfostats, aes(x=workedmaterial, y=Vvc.mean, colour=workedmaterial)) + 
+p12 <- ggplot(volumeconfostatsexp, aes(x=workedmaterial, y=Vvc.mean, colour=workedmaterial)) + 
   geom_boxplot() +
   labs(x="", colour="Micro polish")
 
-p13 <- ggplot(volumeconfostats, aes(x=workedmaterial, y=Vvv.mean, colour=workedmaterial)) + 
+p13 <- ggplot(volumeconfostatsexp, aes(x=workedmaterial, y=Vvv.mean, colour=workedmaterial)) + 
   geom_boxplot() +
   labs(x="", colour="Micro polish")
 
 ggarrange(p8, p9, p10, p11, p12, p13, common.legend = TRUE, font.label = list(size=8), legend="bottom")
 
-ggsave("../plots/confostatvolume_boxplots.png")
+ggsave("../plots/confostatsvolume_boxplots.png")
 
 ```
 
@@ -715,14 +765,10 @@ info_out <- list.files(path = "derived_data", pattern = "\\.pdf$", full.names = 
             md5sum()
 ```
 
-# The checksum (MD5 hashes) of the exported files are:  
-```{r, echo = FALSE}
-info_out
-```
-
-# End of script
+# End and Session info
 ```{r}
 sessionInfo()
 ```
+
 
 

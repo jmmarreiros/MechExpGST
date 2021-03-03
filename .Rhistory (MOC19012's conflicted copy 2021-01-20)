@@ -1,0 +1,512 @@
+perimperc = perimeter / sum(perimeter) * 100)
+id6.1after <- id6.1after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.3after <- id6.3after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.6after <- id6.6after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.7after <- id6.7after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+newslope <- do.call("rbind", list(id2.5before, id3.3before, id3.8before, id3.9before, id6.1before, id6.3before, id6.6before, id6.7before, id2.5after, id3.3after, id3.8after, id3.9after, id6.1after, id6.3after, id6.6after, id6.7after))
+# save output
+write_csv(newslope,"../analysis/derived_data/newslope.csv")
+gisdata <- read_csv("../raw_data/gisdata.csv")
+confocaldata <- read.csv("../raw_data/confocaldata.csv", na.strings = "*****", encoding = "UTF-8")
+data_file <- list.files("../raw_data/", pattern = "\\.csv$", full.names = TRUE)
+md5_in <- md5sum(data_file)
+info_in <- data.frame(file = basename(names(md5_in)), checksum = md5_in, row.names = NULL)
+knitr::opts_knit$set(root.dir = "../", comment = NA, message = FALSE, indent = "", error = TRUE)
+library(tidyverse)
+library(utils)
+library(knitr)
+library(janitor)
+library(kableExtra)
+library(GGally)
+library(doBy)
+library(ggpubr)
+library(ggfortify)
+library(tools)
+gisdata <- read_csv("../raw_data/gisdata.csv")
+confocaldata <- read.csv("../raw_data/confocaldata.csv", na.strings = "*****", encoding = "UTF-8")
+data_file <- list.files("../raw_data/", pattern = "\\.csv$", full.names = TRUE)
+md5_in <- md5sum(data_file)
+info_in <- data.frame(file = basename(names(md5_in)), checksum = md5_in, row.names = NULL)
+gisdata <- read_csv("../raw_data/gisdata.csv")
+confocaldata <- read.csv("../raw_data/confocaldata.csv", na.strings = "*****", encoding = "UTF-8")
+data_file <- list.files("../raw_data/", pattern = "\\.csv$", full.names = TRUE)
+md5_in <- md5sum(data_file)
+info_in <- data.frame(file = basename(names(md5_in)), checksum = md5_in, row.names = NULL)
+str(gisdata)
+str(confocaldata)
+# Compute proportions for perimeter and area grouped by sample and parameter
+slope <- filter(gisdata, parameter == "slope")
+slopebefore <- filter(slope, cycle == "before")
+slopeafter <-  filter(slope, cycle == "after")
+# before experimental cycles (natural surfaces)
+id2.5before <- filter(slopebefore, sample == "id2-5")
+id3.3before <- filter(slopebefore, sample == "id3-3")
+id3.8before <- filter(slopebefore, sample == "id3-8")
+id3.9before <- filter(slopebefore, sample == "id3-9")
+id6.1before <- filter(slopebefore, sample == "id6-1")
+id6.3before <- filter(slopebefore, sample == "id6-3")
+id6.6before <- filter(slopebefore, sample == "id6-6")
+id6.7before <- filter(slopebefore, sample == "id6-7")
+id2.5before <- id2.5before %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id3.3before <- id3.3before %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id3.8before <- id3.8before %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id3.9before <- id3.9before %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.1before <- id6.1before %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.3before <- id6.3before %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.6before <- id6.6before %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.7before <- id6.7before %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+# after experimental cycles
+id2.5after <- filter(slopeafter, sample == "id2-5")
+id3.3after <- filter(slopeafter, sample == "id3-3")
+id3.8after <- filter(slopeafter, sample == "id3-8")
+id3.9after <- filter(slopeafter, sample == "id3-9")
+id6.1after <- filter(slopeafter, sample == "id6-1")
+id6.3after <- filter(slopeafter, sample == "id6-3")
+id6.6after <- filter(slopeafter, sample == "id6-6")
+id6.7after <- filter(slopeafter, sample == "id6-7")
+id2.5after <- id2.5after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id3.3after <- id3.3after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id3.8after <- id3.8after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id3.9after <- id3.9after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.1after <- id6.1after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.3after <- id6.3after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.6after <- id6.6after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.7after <- id6.7after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+newslope <- do.call("rbind", list(id2.5before, id3.3before, id3.8before, id3.9before, id6.1before, id6.3before, id6.6before, id6.7before, id2.5after, id3.3after, id3.8after, id3.9after, id6.1after, id6.3after, id6.6after, id6.7after))
+# save output
+write_csv(newslope,"../derived_data/newslope.csv")
+# Plot data
+# Area %
+impactdf <- filter(newslope, motion == "Impact")
+grinding <- filter(newslope, motion == "Grinding")
+areaimpact <- ggplot(impactdf, aes(x = elev_max, y = areaperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ggtitle("Slope analysis, impact") +
+ylab("Area %") +
+xlab("Slope in º")
+areaimpact
+ggsave("../plots/slopeareaimpact.png")
+areagrinding <- ggplot(grinding, aes(x = elev_max, y = areaperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ggtitle("Slope analysis, grinding") +
+ylab("Area %") +
+xlab("Slope in º")
+areagrinding
+ggsave("../plots/slopeareagrinding.png")
+# Perimeter %
+perimimpact <- ggplot(impactdf, aes(x = elev_max, y = perimperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample) +
+ggtitle("Slope, impact") +
+ylab("Perimeter %") +
+xlab("Slope in º")
+perimimpact
+ggsave("../plots/slopeperimimpact.png")
+perimgrinding <- ggplot(grinding, aes(x = elev_max, y = perimperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ggtitle("Slope, grinding") +
+ylab("Peerimeter %") +
+xlab("Slope in º")
+perimgrinding
+ggsave("../plots/slopeperimgrinding.png")
+tri <- filter(gisdata, parameter == "tri")
+tribefore <- filter(tri, cycle == "before")
+triafter <- filter(tri, cycle =="after")
+# before experimental cycles (natural surfaces)
+id2.5before <- filter(tribefore, sample == "id2-5")
+id3.3before <- filter(tribefore, sample == "id3-3")
+id3.8before <- filter(tribefore, sample == "id3-8")
+id3.9before <- filter(tribefore, sample == "id3-9")
+id6.1before <- filter(tribefore, sample == "id6-1")
+id6.3before <- filter(tribefore, sample == "id6-3")
+id6.6before <- filter(tribefore, sample == "id6-6")
+id6.7before <- filter(tribefore, sample == "id6-7")
+id2.5before <- id2.5before %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id3.3before <- id3.3before %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id3.8before <- id3.8before %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id3.9before <- id3.9before %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.1before <- id6.1before %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.3before <- id6.3before %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.6before <- id6.6before %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.7before <- id6.7before %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+# after experimental cycles
+id2.5after <- filter(triafter, sample == "id2-5")
+id3.3after <- filter(triafter, sample == "id3-3")
+id3.8after <- filter(triafter, sample == "id3-8")
+id3.9after <- filter(triafter, sample == "id3-9")
+id6.1after <- filter(triafter, sample == "id6-1")
+id6.3after <- filter(triafter, sample == "id6-3")
+id6.6after <- filter(triafter, sample == "id6-6")
+id6.7after <- filter(triafter, sample == "id6-7")
+id2.5after <- id2.5after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id3.3after <- id3.3after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id3.8after <- id3.8after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id3.9after <- id3.9after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.1after <- id6.1after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.3after <- id6.3after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.6after <- id6.6after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+id6.7after <- id6.7after %>%
+group_by(sample) %>%
+mutate(
+areaperc = area / sum(area) * 100,
+perimperc = perimeter / sum(perimeter) * 100)
+newtri <- do.call("rbind", list(id2.5before, id3.3before, id3.8before, id3.9before, id6.1before, id6.3before, id6.6before, id6.7before, id2.5after, id3.3after, id3.8after, id3.9after, id6.1after, id6.3after, id6.6after, id6.7after))
+# save output
+write_csv(newtri,"../derived_data/newtri.csv")
+# Plot data
+# Area %
+impactdf <- filter(newtri, motion == "Impact")
+grinding <- filter(newtri, motion == "Grinding")
+areaimpact <- ggplot(impactdf, aes(x = elev_max, y = areaperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ggtitle("TRI analysis, impact") +
+ylab("Area %") +
+xlab("TRI")
+areaimpact
+ggsave("../plots/triareaimpact.png")
+areagrinding <- ggplot(grinding, aes(x = elev_max, y = areaperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ggtitle("TRI analysis, grinding") +
+ylab("Area %") +
+xlab("TRI")
+areagrinding
+ggsave("../plots/triareagrinding.png")
+# Perimeter %
+perimimpact <- ggplot(impactdf, aes(x = elev_max, y = perimperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample) +
+ggtitle("TRI analysis, impact") +
+ylab("Perimeter %") +
+xlab("TRI")
+perimimpact
+ggsave("../plots/triperimimpact.png")
+perimgrinding <- ggplot(grinding, aes(x = elev_max, y = perimperc, colour = cycle)) +
+geom_line() +
+facet_wrap(~sample, scale = "free") +
+ggtitle("TRI analysis, grinding") +
+ylab("Perimeter %") +
+xlab("TRI")
+perimgrinding
+ggsave("../plots/triperimgrinding.png")
+# compute descriptive statistics
+nminmaxmeanmedsd <- function(x){
+y <- x[!is.na(x)]
+n_test <- length(y)
+min_test <- min(y)
+max_test <- max(y)
+mean_test <- mean(y)
+med_test <- median(y)
+sd_test <- sd(y)
+out <- c(n_test, min_test, max_test, mean_test, med_test, sd_test)
+names(out) <- c("n", "min", "max", "mean", "median", "sd")
+return(out)
+}
+num.var <- 21:length(confocaldata)
+confostats <- summaryBy(.~sample + motion + workedmaterial, data=confocaldata[c("sample", "motion","workedmaterial", names(confocaldata)[num.var])], FUN=nminmaxmeanmedsd)
+write_csv(confostats, "../derived_data/confostats.csv")
+# compute descriptive statistics
+nminmaxmeanmedsd <- function(x){
+y <- x[!is.na(x)]
+n_test <- length(y)
+min_test <- min(y)
+max_test <- max(y)
+mean_test <- mean(y)
+med_test <- median(y)
+sd_test <- sd(y)
+out <- c(n_test, min_test, max_test, mean_test, med_test, sd_test)
+names(out) <- c("n", "min", "max", "mean", "median", "sd")
+return(out)
+}
+num.var <- 21:length(confocaldata)
+confostats <- summaryBy(.~sample + motion + workedmaterial, data=confocaldata[c("sample", "motion","workedmaterial", names(confocaldata)[num.var])], FUN=nminmaxmeanmedsd)
+write_csv(confostats, "../derived_data/confostats.csv")
+# Loop for plotting all parmeters
+for (i in num.var) cat("[",i,"] ", names(confocaldata)[i], "\n", sep = "")
+for (i in num.var) {
+p <- ggplot(data = confocaldata, aes_string(x = "workedmaterial", y = names(confocaldata)[i],
+colour = "motion")) +
+geom_boxplot() +
+# geom_line(aes(group = motion)) +
+theme_classic() +
+labs(colour = "motion") +
+# facet_wrap(~ sample) +
+labs(x = "material", y = gsub("\\.", " ", names(confocaldata)[i])) +
+scale_colour_hue(h = c(25,225), limits = levels(confocaldata[["motion"]]))
+print(p)
+# saves the plots
+file_out <- paste0(file_path_sans_ext(info_in[["file"]]), "_plot_",
+names(confocaldata)[i], ".pdf")
+ggsave(filename = file_out, plot = p, path = "../plots", device = "pdf", width = 26,
+height = 21, units = "cm" )
+}
+# Sa vs. Sq
+Sa_Sq <- ggplot(data = confocaldata) +
+geom_point(mapping = aes(x = Sa, y = Sq, colour = workedmaterial)) +
+theme_classic() +
+labs(colour = "workedmaterial") +
+facet_wrap(~ motion) +
+scale_colour_hue(h = c(25, 230))
+print(Sa_Sq)
+file_out <- paste0(file_path_sans_ext(info_in[["file"]]), "_scatterplot_Sa-Sq", ".pdf")
+ggsave(filename = file_out, plot = Sa_Sq, path = "../plots", device = "pdf")
+# epLsar vs. Asfc
+ep_As <- ggplot(data = confocaldata) +
+geom_point(mapping = aes(x = Fractal.complexity.Asfc, y = Lengthscale.anisotropy.Sfrax.epLsar, colour = workedmaterial)) +
+theme_classic() +
+labs(colour = "workedmaterial") +
+facet_wrap(~ motion) +
+scale_colour_hue(h = c(25, 230))
+print(ep_As)
+file_out <- paste0(file_path_sans_ext(info_in[["file"]]), "_scatterplot_Asfc-epLsar", ".pdf")
+ggsave(filename = file_out, plot = ep_As, path = "../plots", device = "pdf")
+# Sq vs. Vmc
+Sq_Vmc <- ggplot(data = confocaldata) +
+geom_point(mapping = aes(x = Sq, y = Vmc, colour = workedmaterial)) +
+theme_classic() +
+labs(colour = "workedmaterial") +
+facet_wrap(~ motion) +
+scale_colour_hue(h = c(25, 230))
+print(Sq_Vmc)
+file_out <- paste0(file_path_sans_ext(info_in[["file"]]), "_scatterplot_Sq-Vmc", ".pdf")
+ggsave(filename = file_out, plot = Sq_Vmc, path = "../plots", device = "pdf")
+# Mean depth of furrows vs. mean density of furrows
+furrows <- ggplot(data = confocaldata) +
+geom_point(mapping = aes(x = Mean.depth.of.furrows, y = Mean.density.of.furrows,
+colour = workedmaterial)) +
+theme_classic() +
+labs(colour = "workedmaterial", x = "Mean depth of furrows", y = "Mean density of furrows") +
+facet_wrap(~ motion) +
+scale_colour_hue(h = c(25, 230))
+print(furrows)
+file_out <- paste0(file_path_sans_ext(info_in[["file"]]), "_scatterplot_furrows", ".pdf")
+ggsave(filename = file_out, plot = furrows, path = "../plots", device = "pdf")
+# combine all in a single image
+ggarrange(Sa_Sq, Sq_Vmc, furrows, ep_As, common.legend = TRUE, legend = "bottom")
+ggsave("../plots/scatterplots.png")
+data(confocaldata, package = "reshape")
+# Height parameters
+ggpairs(data=confocaldata,
+columns = c(21:26),
+cardinality_threshold = 30,
+mapping = ggplot2::aes(color = workedmaterial, shape = motion),
+lower = list(continuous = wrap("points", alpha = 1, size = 2)),
+upper = list(continuous = "blank"),
+legend = c(2,1)
+) +
+theme(legend.position = "right") +
+labs(fill = "Micro polish type")
+ggsave("../plots/confocalarea_matrix.png")
+# Volume parameters
+ggpairs(data=confocaldata,
+columns = c(36:41),
+cardinality_threshold = 30,
+mapping = ggplot2::aes(color = workedmaterial, shape = motion),
+lower = list(continuous = wrap("points", alpha = 1, size = 2)),
+upper = list(continuous = "blank"),
+legend = c(2,1)
+) +
+theme(legend.position = "right") +
+labs(fill = "Micro polish type")
+ggsave("../plots/confocalvolume_matrix.png")
+# select parameter from dataset
+# first Height parameters
+heightconfostats <- select(confostats,sample,workedmaterial, Sq.mean,Ssk.mean,Sku.mean,Sp.mean,Sv.mean,Sz.mean,Sa.mean)
+p1 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Sq.mean, colour=workedmaterial)) +
+geom_boxplot() +
+labs(x="", colour="Micro polish")
+p2 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Ssk.mean, colour=workedmaterial)) +
+geom_boxplot() +
+labs(x="", colour="Micro polish")
+p3 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Sku.mean, colour=workedmaterial)) +
+geom_boxplot() +
+labs(x="", colour="Micro polish")
+p4 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Sp.mean, colour=workedmaterial)) +
+geom_boxplot() +
+labs(x="", colour="Micro polish")
+p5 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Sv.mean, colour=workedmaterial)) +
+geom_boxplot() +
+labs(x="", colour="Micro polish")
+p6 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Sz.mean, colour=workedmaterial)) +
+geom_boxplot() +
+labs(x="", colour="Micro polish")
+p7 <- ggplot(heightconfostats, aes(x=workedmaterial, y=Sa.mean, colour=workedmaterial)) +
+geom_boxplot() +
+labs(x="", colour="Micro polish")
+ggarrange(p1, p2, p3, p4, p5, p6, p7, common.legend = TRUE, font.label = list(size=8), legend="bottom")
+ggsave("../plots/confostatsarea_boxplots.png")
+# Now Volume parameters
+volumeconfostats <- select(confostats,sample,workedmaterial, Vm.mean,Vv.mean,Vmp.mean,Vmc.mean,Vvc.mean,Vvv.mean)
+p8 <- ggplot(volumeconfostats, aes(x=workedmaterial, y=Vm.mean, colour=workedmaterial)) +
+geom_boxplot() +
+labs(x="", colour="Micro polish")
+p9 <- ggplot(volumeconfostats, aes(x=workedmaterial, y=Vv.mean, colour=workedmaterial)) +
+geom_boxplot() +
+labs(x="", colour="Micro polish")
+p10 <- ggplot(volumeconfostats, aes(x=workedmaterial, y=Vmp.mean, colour=workedmaterial)) +
+geom_boxplot() +
+labs(x="", colour="Micro polish")
+p11 <- ggplot(volumeconfostats, aes(x=workedmaterial, y=Vmc.mean, colour=workedmaterial)) +
+geom_boxplot() +
+labs(x="", colour="Micro polish")
+p12 <- ggplot(volumeconfostats, aes(x=workedmaterial, y=Vvc.mean, colour=workedmaterial)) +
+geom_boxplot() +
+labs(x="", colour="Micro polish")
+p13 <- ggplot(volumeconfostats, aes(x=workedmaterial, y=Vvv.mean, colour=workedmaterial)) +
+geom_boxplot() +
+labs(x="", colour="Micro polish")
+ggarrange(p8, p9, p10, p11, p12, p13, common.legend = TRUE, font.label = list(size=8), legend="bottom")
+ggsave("../plots/confostatvolume_boxplots.png")
+info_out <- list.files(path = "derived_data", pattern = "\\.pdf$", full.names = TRUE) %>%
+md5sum()
+info_out
+sessionInfo()
+install.packages(c("backports", "cli", "colorspace", "cpp11", "dbplyr", "digest", "doBy", "generics", "isoband", "KernSmooth", "lme4", "lubridate", "magrittr", "openxlsx", "patchwork", "pillar", "processx", "quantreg", "RcppArmadillo", "readr", "rlang", "rprojroot", "rstudioapi", "testthat", "tibble", "tinytex", "vctrs", "xfun"))
+knitr::opts_knit$set(root.dir = "../", comment = NA, message = FALSE, indent = "", error = TRUE)
+gisdata <- read_csv("../raw_data/gisdata.csv")
+gisdata <- read_csv("../raw_data/gisdata.csv")
+install.packages(c("backports", "BH", "broom", "cowplot", "cpp11", "data.table", "DBI", "Deriv", "diffobj", "dplyr", "fansi", "GGally", "ggplot2", "ggrepel", "hms", "htmltools", "janitor", "jsonlite", "nlme", "patchwork", "pbkrtest", "pkgbuild", "ps", "quantreg", "Rcpp", "RcppArmadillo", "RcppEigen", "rlang", "rmarkdown", "sp", "testthat", "tibble", "tinytex", "vctrs", "withr", "xfun"))
