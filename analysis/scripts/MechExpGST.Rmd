@@ -1,10 +1,10 @@
 ---
 title: "SOM - Read and data plotting from the manuscript Paixao et al. 2021 - JASr"
 author: "Paixão et al.2021 - JARs"
-date: "28/09/2020"
+date: "`r Sys.time()`"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
