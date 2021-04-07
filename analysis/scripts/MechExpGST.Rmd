@@ -28,9 +28,12 @@ This R project and respective scripts follow the procedures described by Marwick
 To compile this markdown document do not delete or move files from their original folders.
 Please note that most of the tables and figures in this file do not match the numbering in the original manuscript.
 
+The authors would like to thank Ivan Calandra and Lisa Schunk for their help and contribution on several chunks of code included here in the script (pieces of code are also adapated from Calandra et al. 2019, Pedergnana et al. 2020a, 2020b).
+
 For any questions, comments and inputs, please contact:
 
 João Marreiros, marreiros@rgzm.de, or Eduardo Paixão, paixao@rgzm.de
+
 
 # Load data into R project
 
