@@ -20,11 +20,11 @@ Title <- "Using mechanical experiments to study Ground Stone Tool use: exploring
 
 This repository contains the data and code for our paper:
 
-> Eduardo Paixão, Antonella Pedergnana, Joao Marreiros, Laure Debreuil, Marion Prévost, Yossi Zaidner, Geoff Carver, Walter Gneisinger, (2021). _`r Title`_. Journal of Archaeological Science: Reports <https://doi.org/xxx/xxx>
+> Eduardo Paixão, Antonella Pedergnana, Joao Marreiros, Laure Debreuil, Marion Prévost, Yossi Zaidner, Geoff Carver, Walter Gneisinger, (2021). _`r Title`_. Journal of Archaeological Science: Reports <https://doi.org/10.1016/j.jasrep.2021.102971>
 
 Our pre-print is online here:
 
-> Eduardo Paixão, Antonella Pedergnana, Joao Marreiros, Laure Debreuil, Marion Prévost, Yossi Zaidner, Geoff Carver, Walter Gneisinger, (2021). _`r Title`_. Name of journal/book, Accessed `r format(Sys.Date(), "%d %b %Y")`. Online at <https://doi.org/xxx/xxx>
+> Eduardo Paixão, Antonella Pedergnana, Joao Marreiros, Laure Debreuil, Marion Prévost, Yossi Zaidner, Geoff Carver, Walter Gneisinger, (2021). _`r Title`_. Name of journal/book, Accessed `r format(Sys.Date(), "%d %b %Y")`. Online at <https://10.31219/osf.io/kdfu5>
 
 ### How to cite
 
