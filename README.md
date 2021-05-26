@@ -12,7 +12,7 @@ This repository contains the data and code for our paper:
 > (2021). *Using mechanical experiments to study Ground Stone Tool use:
 > exploring the formation of percussive and grinding wear traces on
 > limestone tools*. Journal of Archaeological Science: Reports
-> <https://doi.org/xxx/xxx>
+> <https://doi.org/10.1016/j.jasrep.2021.102971>
 
 Our pre-print is online here:
 
@@ -20,8 +20,8 @@ Our pre-print is online here:
 > Marion Prévost, Yossi Zaidner, Geoff Carver, Walter Gneisinger,
 > (2021). *Using mechanical experiments to study Ground Stone Tool use:
 > exploring the formation of percussive and grinding wear traces on
-> limestone tools*. Name of journal/book, Accessed 05 May 2021. Online
-> at <https://doi.org/xxx/xxx>
+> limestone tools*. Name of journal/book, Accessed 26 May 2021. Online
+> at <https://10.31219/osf.io/kdfu5>
 
 ### How to cite
 
@@ -31,7 +31,7 @@ Please cite this compendium as:
 > Marion Prévost, Yossi Zaidner, Geoff Carver, Walter Gneisinger,
 > (2021). *Compendium of R code and data for Using mechanical
 > experiments to study Ground Stone Tool use: exploring the formation of
-> percussive and grinding wear traces on limestone tools*. Accessed 05
+> percussive and grinding wear traces on limestone tools*. Accessed 26
 > May 2021. Online at <https://doi.org/xxx/xxx>
 
 ## Contents
